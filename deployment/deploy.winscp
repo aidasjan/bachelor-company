@@ -1,0 +1,27 @@
+option batch continue
+open ftpes://%1%/
+cd %2%/public_html/
+rm css
+rm js
+rm fa
+rm img
+put public_html\css ./css
+put public_html\js ./js
+put public_html\fa ./fa
+put public_html\img ./img
+cd %2%/src
+rm app
+rm bootstrap
+rm config
+rm database
+rm resources
+rm routes
+rm tests
+put src\app ./app
+put src\bootstrap ./bootstrap
+put src\config ./config
+put src\database ./database
+put src\resources ./resources
+put src\routes ./routes
+put src\tests ./tests
+exit

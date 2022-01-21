@@ -37,10 +37,10 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function create($subcategoryId)
+    public function create($categoryId)
     {
         if (auth()->user()->isAdmin()) {
-            return view('pages.products.create')->with('subcategory_id', $subcategoryId);
+            return view('pages.products.create')->with('categoryId', $categoryId);
         } else abort(404);
     }
 
@@ -49,7 +49,7 @@ class ProductsController extends Controller
         if (auth()->user()->isAdmin()) {
             $this->validateStoreRequest($request);
             $product = $this->productService->add($request);
-            return redirect($product->subcategory->getDisplayUrl());
+            return redirect($product->category->getDisplayUrl());
         } else abort(404);
     }
 
@@ -61,7 +61,7 @@ class ProductsController extends Controller
             'unit' => 'required',
             'currency' => 'required',
             'price' => 'required',
-            'subcategory_id' => 'required'
+            'category_id' => 'required'
         ]);
     }
 

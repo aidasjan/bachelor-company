@@ -30,7 +30,7 @@
                     <input type='number' step='any' value='' name='price' class='form-control' required>
                     <small>Separated by point (1.00)</small>
                 </div>
-                <input type='hidden' value='{{$subcategory_id}}' name='subcategory_id'>
+                <input type='hidden' value='{{$categoryId}}' name='category_id'>
                 {{csrf_field()}}
                 <button type='submit' class='btn btn-primary'>SAVE PRODUCT</button>
             </form>

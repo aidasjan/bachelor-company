@@ -17,14 +17,26 @@ class Category extends Model
         return $value;
     }
 
-    public function subcategories() {
-        return $this->hasMany('App\Subcategory', 'category_id');
+    public function products() {
+        return $this->hasMany('App\Product', 'category_id');
+    }
+
+    public function parentCategory() {
+        return $this->belongsTo('App\Category', 'parent_id');
+    }
+
+    public function childCategories() {
+        return $this->hasMany('App\Category', 'parent_id');
+    }
+
+    public function files() {
+        return $this->belongsToMany('App\File', 'category_files');
     }
 
     public function safeDelete() {
-        $subcategories = $this->subcategories;
-        foreach ($subcategories as $subcategory) {
-            $subcategory->safeDelete();
+        $products = $this->products;
+        foreach ($products as $product) {
+            $product->safeDelete();
         }
         $this->delete();
     }

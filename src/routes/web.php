@@ -14,23 +14,16 @@
 Route::get('/', 'CategoriesController@index')->name('index');
 
 // Categories routes
-Route::post('categories', 'CategoriesController@store')->name('categories.store');
-Route::get('categories/create', 'CategoriesController@create')->name('categories.create');
-Route::get('categories/{category_code}', 'CategoriesController@show')->name('categories.show');
-Route::put('categories/{category}', 'CategoriesController@update')->name('categories.update');
-Route::delete('categories/{category}', 'CategoriesController@destroy')->name('categories.destroy');
-Route::get('categories/{category}/edit', 'CategoriesController@edit')->name('categories.edit');
-
-// Subcategories routes
-Route::post('subcategories', 'SubcategoriesController@store')->name('subcategories.store');
-Route::get('subcategories/create/{category}', 'SubcategoriesController@create')->name('subcategories.create');
-Route::get('categories/{category_code}/{subcategory_code}', 'SubcategoriesController@show')->name('subcategories.show');
-Route::put('subcategories/{subcategory}', 'SubcategoriesController@update')->name('subcategories.update');
-Route::delete('subcategories/{subcategory}', 'SubcategoriesController@destroy')->name('subcategories.destroy');
-Route::get('subcategories/{subcategory}/edit', 'SubcategoriesController@edit')->name('subcategories.edit');
-Route::get('subcategories/{subcategory}/images/create', 'SubcategoriesController@uploadImage');
-Route::post('subcategories/{subcategory}/images', 'SubcategoriesController@storeImage');
-Route::delete('subcategories/{subcategory}/images', 'SubcategoriesController@destroyImage');
+Route::post('categories', 'CategoriesController@store');
+Route::get('categories/create', 'CategoriesController@create');
+Route::get('categories/create/{parent_id}', 'CategoriesController@createChild');
+Route::get('categories/{category_code}', 'CategoriesController@show');
+Route::put('categories/{category}', 'CategoriesController@update');
+Route::delete('categories/{category}', 'CategoriesController@destroy');
+Route::get('categories/{category}/edit', 'CategoriesController@edit');
+Route::get('categories/{category}/images/create', 'CategoriesController@uploadImage');
+Route::post('categories/{category}/images', 'CategoriesController@storeImage');
+Route::delete('categories/{category}/images', 'CategoriesController@destroyImage');
 
 // Products routes
 Route::post('products', 'ProductsController@store')->name('products.store');

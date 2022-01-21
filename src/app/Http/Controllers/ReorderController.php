@@ -7,16 +7,16 @@ use App\Services\ReorderingService;
 
 class ReorderController extends Controller
 {
-    public function __construct()
+    public function __construct(ReorderingService $reorderingService)
     {
         $this->middleware('auth');
+        $this->reorderingService = $reorderingService;
     }
 
     public function index($type, $parent_id = null)
     {
         if (auth()->user()->isAdmin()) {
-            $reordering_service = new ReorderingService;
-            $items = $reordering_service->getItemsToReorder($type, $parent_id);
+            $items = $this->reorderingService->getItemsToReorder($type, $parent_id);
             if ($items == null || $items->count() == 0) { abort(404); }
             return view('pages.admin.reorder.index')->with([
                 'items' => $items,
@@ -30,8 +30,7 @@ class ReorderController extends Controller
     public function reorder(Request $request, $type, $parent_id = null)
     {
         if (auth()->user()->isAdmin()) {
-            $reordering_service = new ReorderingService;
-            $reordering_service->reorderItems($request, $type, $parent_id);
+            $this->reorderingService->reorderItems($request, $type, $parent_id);
             return redirect()->back();
         }
         else abort(404);
@@ -40,8 +39,7 @@ class ReorderController extends Controller
     public function reorderRoot(Request $request, $type)
     {
         if (auth()->user()->isAdmin()) {
-            $reordering_service = new ReorderingService;
-            $reordering_service->reorderItems($request, $type);
+            $this->reorderingService->reorderItems($request, $type);
             return redirect()->back();
         }
         else abort(404);

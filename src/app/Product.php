@@ -11,24 +11,28 @@ class Product extends Model
     public $primaryKey = 'id';
     public $timeStamps = true;
 
-    public function subcategory() {
-        return $this->belongsTo('App\Subcategory', 'subcategory_id');
+    public function category()
+    {
+        return $this->belongsTo('App\Category', 'category_id');
     }
 
-    public function files() {
+    public function files()
+    {
         return $this->belongsToMany('App\File', 'product_files');
     }
 
-    public function related_products() {
+    public function related_products()
+    {
         return $this->hasMany('App\RelatedProduct', 'product_id');
     }
 
-    public function order_products(){
+    public function order_products()
+    {
         return $this->hasMany('App\OrderProduct');
     }
 
 
-    public function getDiscount($user) 
+    public function getDiscount($user)
     {
         if ($user === null) return null;
         $product = $this;
@@ -37,22 +41,23 @@ class Product extends Model
         return $discount;
     }
 
-    public function getPriceWithDiscount($user) 
+    public function getPriceWithDiscount($user)
     {
         if ($user === null) return null;
         $product = $this;
         $discount = $product->getDiscount($user);
-        return $product->price * (1 - $discount/100);
+        return $product->price * (1 - $discount / 100);
     }
 
-    public function getPriceWithGeneralDiscount() 
+    public function getPriceWithGeneralDiscount()
     {
         $product = $this;
-        $discount = $product->subcategory->discount;
-        return $product->price * (1 - $discount/100);
+        $discount = $product->category->discount;
+        return $product->price * (1 - $discount / 100);
     }
 
-    public function safeDelete() {
+    public function safeDelete()
+    {
         $files = $this->files;
         foreach ($files as $file) {
             $file->safeDelete();

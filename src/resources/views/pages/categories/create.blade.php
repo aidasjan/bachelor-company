@@ -18,6 +18,11 @@
                     <label>Category name RU</label>
                     <input type='text' value='' name='name_ru' class='form-control' required>
                 </div>
+                <div class='form-group col-md-4 offset-md-4 align-self-center'>
+                    <label>Discount (%)</label>
+                    <input type='number' step='any' min='0' max='100' value='0' name='discount' class='form-control' required>
+                </div>
+                @if ($parentId !== null) <input type='hidden' value='{{$parentId}}' name='parent_id'> @endif
                 {{csrf_field()}}
                 <button type='submit' class='btn btn-primary'>SAVE CATEGORY</button>
             </form>

@@ -18,6 +18,10 @@
                     <label>Category name RU</label>
                     <input type='text' value="{{$category->getOriginal('name_ru')}}" name='name_ru' class='form-control' required>
                 </div>
+                <div class='form-group col-md-4 offset-md-4 align-self-center'>
+                    <label>Discount (%)</label>
+                    <input type='number' step='any' min='0' max='100' value="{{$category->discount}}" name='discount' class='form-control' required>
+                </div>
                 <input type='hidden' name='_method' value='PUT'>
                 {{csrf_field()}}
                 <button type='submit' class='btn btn-primary'>SAVE CATEGORY</button>

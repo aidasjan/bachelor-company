@@ -20,8 +20,8 @@ class FileService
         }
     }
 
-    public function deleteFile($file_id, $disk = 'public') {
-        $file = File::find($file_id);
+    public function deleteFile($fileId, $disk = 'public') {
+        $file = File::find($fileId);
         if ($file === null) {
             return null;
         }

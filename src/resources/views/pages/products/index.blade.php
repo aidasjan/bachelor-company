@@ -12,24 +12,24 @@
     </div>
 
 
-    @if (!Auth::guest() && Auth::user()->isAdmin() && !empty($subcategory))
+    @if (!Auth::guest() && Auth::user()->isAdmin() && !empty($category))
         <div class='row py-3 container_grey'>
             <div class='col'>
-                <a href="{{url('/products/create/'.$subcategory->id)}}" class='btn btn-link link_main'>ADD PRODUCT</a>
-                <a href="{{url('/subcategories'.'/'.$subcategory->id.'/edit')}}" class='btn btn-link link_main'>EDIT SUBCATEGORY</a>
-                <a href="{{url('/subcategories'.'/'.$subcategory->id.'/images/create')}}" class='btn btn-link link_main'>ADD IMAGE</a>
-                <a href="{{url('/reorder/products/'.$subcategory->id)}}" class='btn btn-link link_main'>REORDER</a>
+                <a href="{{url('/products/create/'.$category->id)}}" class='btn btn-link link_main'>ADD PRODUCT</a>
+                <a href="{{url('/categories'.'/'.$category->id.'/edit')}}" class='btn btn-link link_main'>EDIT CATEGORY</a>
+                <a href="{{url('/categories'.'/'.$category->id.'/images/create')}}" class='btn btn-link link_main'>ADD IMAGE</a>
+                <a href="{{url('/reorder/products/'.$category->id)}}" class='btn btn-link link_main'>REORDER</a>
             </div>
         </div>
     @endif
 
-    @if (!empty($subcategory_files))
+    @if (!empty($categoryFiles))
         <div class='image_gallery d-flex flex-wrap justify-content-center py-2'>
-            @foreach ($subcategory_files as $file)
+            @foreach ($categoryFiles as $file)
                 <div class='m-1'>
                     <img src='{{url('/files/images/'.$file->id)}}' />
                     @if (!Auth::guest() && Auth::user()->isAdmin())
-                        <form action='{{ action('SubcategoriesController@destroyImage', $file->id)}}' method='POST'>
+                        <form action='{{ action('CategoriesController@destroyImage', $file->id)}}' method='POST'>
                             <input type='hidden' name='_method' value='DELETE'>
                             {{csrf_field()}}
                             <button type='submit' class='btn btn-link link_red'>DELETE</button>

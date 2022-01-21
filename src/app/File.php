@@ -15,8 +15,8 @@ class File extends Model
         return $this->belongsToMany('App\Product', 'product_files');
     }
 
-    public function subcategories() {
-        return $this->belongsToMany('App\Subcategory', 'subcategory_files');
+    public function categories() {
+        return $this->belongsToMany('App\Category', 'category_files');
     }
 
     public function isImage() {
@@ -28,8 +28,8 @@ class File extends Model
         return $this->products->count() === 1;
     }
 
-    public function isSubcategoryFile() {
-        return $this->subcategories->count() === 1;
+    public function isCategoryFile() {
+        return $this->categories->count() === 1;
     }
 
     public function getNameWithExtension() {
@@ -38,8 +38,8 @@ class File extends Model
 
     public function safeDelete() {
         $this->products()->detach();
-        $this->subcategories()->detach();
-        $file_service = new FileService;
-        $file_service->deleteFile($this->id);
+        $this->categories()->detach();
+        $fileService = new FileService;
+        $fileService->deleteFile($this->id);
     }
 }

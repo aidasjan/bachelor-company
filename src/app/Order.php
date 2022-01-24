@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Product;
 use App\User;
 
 class Order extends Model
@@ -11,6 +10,11 @@ class Order extends Model
     protected $table = 'orders';
     public $primaryKey = 'id';
     public $timeStamps = true;
+
+    public function user()
+    {
+        return $this->hasMany('App\User');
+    }
 
     public function orderProducts()
     {
@@ -61,9 +65,8 @@ class Order extends Model
 
     public function getClient()
     {
-        $order = $this;
-        $user = User::find($order->user_id);
-        if ($user !== null && $user->isClient()) return $user;
+        $user = $this->user;
+        if ($user->isClient()) return $user;
     }
 
     public function attachQuantities($products)

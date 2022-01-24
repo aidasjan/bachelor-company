@@ -35,10 +35,10 @@ class UsersController extends Controller
             $this->validateStoreRequest($request);
             $randomPassword = $this->userService->store($request);
 
-            $data = [
+            $data = array(
                 'newUserEmail' => $request->input('email'),
                 'newUserPassword' => $randomPassword
-            ];
+            );
 
             return redirect('register')->with($data);
         } else abort(404);

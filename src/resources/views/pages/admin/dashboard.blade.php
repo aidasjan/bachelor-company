@@ -31,7 +31,7 @@
                             <tr>
                                 <td>{{$counter++}}.</td>
                                 <td><a href="{{url('/orders'.'/'.$order->id)}}">ORDER {{$order->id}}</td>
-                                <td>{{$order->client->name}}</td>
+                                <td>{{$order->user->name}}</td>
                                 <td>{{$order->updated_at}}</td>
                             </tr>
                         @endforeach

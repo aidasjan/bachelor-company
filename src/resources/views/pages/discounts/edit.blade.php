@@ -20,7 +20,7 @@
                 <div class='form-group'>
                     <input type='number' value='' name='discount' class='form-control' placeholder='Discount (%)'>
                 </div>
-                <input type='hidden' value='{{$user->id}}' name='dis_user'>
+                <input type='hidden' value='{{$user->id}}' name='discountUser'>
                 {{csrf_field()}}
                 <button type='submit' class='btn btn-primary'>ASSIGN</button>
             </form>
@@ -32,7 +32,7 @@
 
             <form action="{{action('DiscountsController@store')}}" method='POST'>
                 <table class='table_main'>
-                    <tr><th></th><th>CATEGORY</th><th>PRODUCT GROUP</th><th>DISCOUNT (%)</th></tr>
+                    <tr><th></th><th>CATEGORY</th><th>DISCOUNT (%)</th></tr>
                     <?php $counter = 1; ?>
                     @foreach ($categories as $category)
                         <tr>
@@ -41,9 +41,9 @@
                             <td><input type='number' min='0' max='100' step='any' onfocus="this.value=''" value='{{$category->discount}}' name='{{$category->id}}' class='form-control'></td>
                         </tr>
                     @endforeach
-                    <td></td><td></td><td></td>
+                    <td></td><td></td>
                     <td class='text-center'>
-                        <input type='hidden' name='dis_user' value='{{$user->id}}'>
+                        <input type='hidden' name='discountUser' value='{{$user->id}}'>
                         {{csrf_field()}}
                         <button type='submit' class='btn btn-primary'>SAVE SELECTIONS</button>
                     </td>

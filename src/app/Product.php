@@ -26,7 +26,7 @@ class Product extends Model
         return $this->hasMany('App\RelatedProduct', 'product_id');
     }
 
-    public function order_products()
+    public function orderProducts()
     {
         return $this->hasMany('App\OrderProduct');
     }
@@ -62,13 +62,13 @@ class Product extends Model
         foreach ($files as $file) {
             $file->safeDelete();
         }
-        $order_products = $this->order_products;
-        foreach ($order_products as $order_product) {
-            $order_product->delete();
+        $orderProducts = $this->orderProducts;
+        foreach ($orderProducts as $orderProduct) {
+            $orderProduct->delete();
         }
         $relatedProducts = RelatedProduct::where('product_id', $this->id)->orWhere('related_product_id', $this->id)->get();
-        foreach ($relatedProducts as $related_product) {
-            $related_product->delete();
+        foreach ($relatedProducts as $relatedProduct) {
+            $relatedProduct->delete();
         }
         $this->delete();
     }

@@ -76,12 +76,12 @@ class OrdersController extends Controller
             if ($user === null || !$user->isClient()) { abort(404); }
 
             $data = array(
-                'order_products' => $order->order_products,
+                'orderProducts' => $order->orderProducts,
                 'order' => $order,
                 'user' => $user
             );
             
-            foreach ($data['order_products'] as $order_product) {
+            foreach ($data['orderProducts'] as $order_product) {
                 if (($order->status == 0 && $order_product->getProduct() == null) || $order_product->getTotalPrice($user) == null) { abort(404); }
                 $order_product->discount = $order_product->getDiscount($user);
                 $order_product->price_discount = $order_product->getPriceWithDiscount($user);
@@ -118,7 +118,7 @@ class OrdersController extends Controller
             if ($order === null || $order->user_id !== auth()->user()->id) { abort(404); }
 
             if ($order->status == 0){ 
-                foreach ($order->order_products as $order_product) {
+                foreach ($order->orderProducts as $order_product) {
                     $product = $order_product->getProduct();
                     if ($product === null) { abort(404); }
                     $order_product->code = $product->code;
@@ -156,7 +156,7 @@ class OrdersController extends Controller
         if ($order === null) abort(404);
 
         if ((auth()->user()->isClient() && $order->user_id === auth()->user()->id && $order->status === 0) || auth()->user()->isAdmin()){
-            foreach ($order->order_products as $order_product){
+            foreach ($order->orderProducts as $order_product){
                 $order_product->delete();
             }
             if (session('current_order') == $order->id) session()->forget('current_order');
@@ -172,7 +172,7 @@ class OrdersController extends Controller
         if (auth()->user()->isAdmin()){
             $unsubmittedOrders = Order::where('status', '0')->get();
             foreach ($unsubmittedOrders as $unsubmitted_order){
-                foreach ($unsubmitted_order->order_products as $order_product){
+                foreach ($unsubmitted_order->orderProducts as $order_product){
                     $order_product->delete();
                 }
                 $unsubmitted_order->delete();

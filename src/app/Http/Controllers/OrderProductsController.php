@@ -62,8 +62,8 @@ class OrderProductsController extends Controller
                     if (!(is_numeric($value) || $value=='')) abort(404); // If value is not valid
                     
                     // If product is already in order
-                    if ($order->order_products->where('product_id', $key)->first() !== null){
-                        $order_product = $order->order_products->where('product_id', $key)->first();
+                    if ($order->orderProducts->where('product_id', $key)->first() !== null){
+                        $order_product = $order->orderProducts->where('product_id', $key)->first();
                         if ($value > 0){
                             $order_product->quantity = $value;
                             $order_product->save();

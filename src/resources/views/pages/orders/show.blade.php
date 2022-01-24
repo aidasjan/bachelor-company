@@ -16,7 +16,7 @@
             <table class='table table-responsive-md table_main'>
                 <tr><th></th><th>{{ __('main.code') }}</th><th>{{ __('main.name') }}</th><th>{{ __('main.qty') }}</th><th>{{ __('main.unit') }}</th><th>{{ __('main.price') }}</th><th>{{ __('main.discount') }}</th><th>{{ __('main.final_price') }}</th><th>{{ __('main.total') }}</th></tr>
                 <?php $counter = 1; ?>
-                @foreach ($order_products as $order_product)
+                @foreach ($orderProducts as $order_product)
                     <tr>
                         <td>{{$counter++}}.</td>
                         <td>{{$order_product->code}}</td>

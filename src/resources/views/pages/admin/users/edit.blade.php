@@ -56,14 +56,14 @@
         </div>
     </div>
 
-    @if (Session::get('reset_user_email')!==null && Session::get('reset_user_password')!==null)
+    @if (Session::get('resetUserEmail')!==null && Session::get('resetUserPassword')!==null)
         <div class='row'>
             <div class='col container_blue py-5 px-5'>
                 <h2 class='py-3 font-weight-bold text_white'>Client password has been reset.</h2>
                 <h4 class='text-left py-3 text_white'>Send the following credentials to the client:</h4>
                 <div class='container_grey p-3'>
-                    <h5 class='text-left py-1 my-0'><b>Email:</b> {{Session::get('reset_user_email')}} </h5>
-                    <h5 class='text-left py-1 my-0'><b>Password:</b> {{Session::get('reset_user_password')}} </h5>
+                    <h5 class='text-left py-1 my-0'><b>Email:</b> {{Session::get('resetUserEmail')}} </h5>
+                    <h5 class='text-left py-1 my-0'><b>Password:</b> {{Session::get('resetUserPassword')}} </h5>
                 </div>
                 <p class='font-weight-bold text-left pt-3 text_white'>SAVE THESE CREDENTIALS OR SEND THEM TO CLIENT NOW. <br>INFORMATION ABOVE WILL BE DELETED AS SOON AS YOU REFRESH OR EXIT THIS PAGE.</p>
             </div>

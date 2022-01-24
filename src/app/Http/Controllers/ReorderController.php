@@ -7,6 +7,7 @@ use App\Services\ReorderingService;
 
 class ReorderController extends Controller
 {
+    
     public function __construct(ReorderingService $reorderingService)
     {
         $this->middleware('auth');

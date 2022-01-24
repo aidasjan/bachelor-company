@@ -13,7 +13,7 @@
         <th style='padding: 5px 10px'>{{__('main.final_price')}}*</th>
         <th style='padding: 5px 10px'>{{__('main.total')}}*</th>
     </tr>
-    @foreach ($order->order_products as $order_product)
+    @foreach ($order->orderProducts as $order_product)
         <tr>
             <td style='padding: 5px 10px'>{{$order_product->code}}</td>
             <td style='padding: 5px 10px'>{{$order_product->name}}</td>

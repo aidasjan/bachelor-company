@@ -86,7 +86,7 @@ Route::get('orders/{order}/edit', 'OrdersController@edit')->name('orders.edit');
 Route::post('orders/destroy_unsubmitted', 'OrdersController@destroyUnsubmitted')->name('orders.destroy_unsubmitted');
 
 // Order products routes
-Route::post('order_products', 'OrderProductsController@store')->name('order_products.store');
+Route::post('orderProducts', 'OrderProductsController@store')->name('orderProducts.store');
 
 // Discounts routes
 Route::get('discounts', 'DiscountsController@index')->name('discounts.index');

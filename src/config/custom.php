@@ -14,7 +14,7 @@ return [
             'allowed_file_types' => 'jpeg,jpg,png,pdf,xlsx,docx',
             'max_file_size' => '10000',
         ],
-        'subcategory_file' => [
+        'category_file' => [
             'allowed_file_types' => 'jpeg,jpg,png',
             'max_file_size' => '10000',
         ],
@@ -33,10 +33,10 @@ return [
         'interval_days' => 7,
         'backups_to_keep' => 12,
         'models' => [
-            'App\Category', 'App\Subcategory', 'App\Product', 'App\File'
+            'App\Category', 'App\Product', 'App\File'
         ],
         'tables' => [
-            'product_files', 'subcategory_files', 'related_products'
+            'product_files', 'category_files', 'related_products'
         ],
     ],
 

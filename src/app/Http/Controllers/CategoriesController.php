@@ -152,8 +152,8 @@ class CategoriesController extends Controller
 
     private function validateStoreImageRequest(Request $request)
     {
-        $allowedMimes = config('custom.files.subcategory_file.allowed_file_types') ?? '';
-        $maxFileSize = config('custom.files.subcategory_file.max_file_size') ?? 0;
+        $allowedMimes = config('custom.files.category_file.allowed_file_types') ?? '';
+        $maxFileSize = config('custom.files.category_file.max_file_size') ?? 0;
         $request->validate([
             'category_file' => [
                 'required',

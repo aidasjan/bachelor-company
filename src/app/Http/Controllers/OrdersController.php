@@ -170,8 +170,8 @@ class OrdersController extends Controller
     public function destroyUnsubmitted()
     {
         if (auth()->user()->isAdmin()){
-            $unsubmitted_orders = Order::where('status', '0')->get();
-            foreach ($unsubmitted_orders as $unsubmitted_order){
+            $unsubmittedOrders = Order::where('status', '0')->get();
+            foreach ($unsubmittedOrders as $unsubmitted_order){
                 foreach ($unsubmitted_order->order_products as $order_product){
                     $order_product->delete();
                 }

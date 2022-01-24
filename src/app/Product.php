@@ -36,8 +36,8 @@ class Product extends Model
     {
         if ($user === null) return null;
         $product = $this;
-        $subcategory = $product->subcategory;
-        $discount = $user->getDiscount($subcategory);
+        $category = $product->category;
+        $discount = $user->getDiscount($category);
         return $discount;
     }
 

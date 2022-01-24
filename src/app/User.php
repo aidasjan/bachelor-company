@@ -71,14 +71,13 @@ class User extends Authenticatable
         return $discounts;
     }
 
-    public function getDiscount($subcategory){
+    public function getDiscount($category){
         $user = $this;
         if (!($user->isClient() || $user->isNewClient())) return null;
-        $discount = $user->getAllDiscounts()->where('subcategory_id', $subcategory->id)->first();
+        $discount = $user->getAllDiscounts()->where('category_id', $category->id)->first();
 
-        // Check if general subcategory discount is bigger than user's personal discount
-        if ($subcategory->discount > 0 && ($discount === null || $subcategory->discount > $discount->discount)) 
-            return $subcategory->discount;
+        if ($category->discount > 0 && ($discount === null || $category->discount > $discount->discount)) 
+            return $category->discount;
 
         if ($discount === null) return 0;
         return $discount->discount;

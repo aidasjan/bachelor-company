@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Category;
-use App\Subcategory;
-use App\Product;
 use App\Imports\CategoriesImport;
-use App\Imports\SubcategoriesImport;
 use App\Imports\ProductsImport;
 use App\Services\FileService;
 
@@ -61,7 +57,7 @@ class ImportController extends Controller
 
     private function isImportTypeSupported($type) 
     {
-        $supported_types = ['products', 'categories', 'subcategories'];
+        $supported_types = ['products', 'categories'];
         return in_array($type, $supported_types);
     }
 
@@ -69,7 +65,6 @@ class ImportController extends Controller
     {
         switch ($type) {
             case 'categories': return new CategoriesImport;
-            case 'subcategories': return new SubcategoriesImport;
             case 'products': return new ProductsImport;
             default: return null;
         }

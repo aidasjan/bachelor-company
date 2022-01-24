@@ -1,25 +1,25 @@
-<nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
+<nav class="navbar navbar-expand-md navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src='{{asset('img/wmp-logo.svg')}}' height='50px'>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars text_white"></i>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                            <a class="nav-link text-uppercase" style='color: #fff;' href="{{route('index')}}">{{ __('main.home') }}</a>
+                        <a class="nav-link text-uppercase text_white" href="{{route('index')}}">{{ __('main.home') }}</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-uppercase" style="color:#fff" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a class="nav-link dropdown-toggle text-uppercase text_white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ __('main.products') }} <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right">
-                            <?php $categories = App\Category::orderBy('position')->get(); ?>
+                            <?php $categories = App\Category::where('parent_id', null)->orderBy('position')->get(); ?>
                             @foreach ($categories as $category)
                                 <a class="dropdown-item" href="{{ url($category->getDisplayUrl()) }}">{{$category->name}}</a>
                             @endforeach
@@ -32,10 +32,10 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link text-uppercase" style='color: #fff;' href="{{ route('login') }}">{{ __('main.login') }}</a>
+                            <a class="nav-link text-uppercase text_white" href="{{ route('login') }}">{{ __('main.login') }}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-uppercase" style="color:#fff" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a class="nav-link dropdown-toggle text-uppercase text_white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ App::getLocale() }} <span class="caret"></span>
                             </a>
 
@@ -46,7 +46,7 @@
                         </li>
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color:#fff" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text_white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
@@ -68,17 +68,17 @@
                                     {{ __('main.logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <form id="new-order-form" action="{{ action('OrdersController@store') }}" method="POST" style="display: none;">
+                                <form id="new-order-form" action="{{ action('OrdersController@store') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-uppercase" style="color:#fff" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a class="nav-link dropdown-toggle text-uppercase text_white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ App::getLocale() }} <span class="caret"></span>
                             </a>
 

@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Product;
 use App\Category;
-use App\Subcategory;
 use App\Services\ProductService;
 use App\Services\SearchService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -37,7 +36,6 @@ class ProductServiceTest extends TestCase
 
     private function prepareData() {
         factory(Category::class)->create(['id' => 1]);
-        factory(Subcategory::class)->create(['id' => 1]);
     }
 }
 
@@ -45,10 +43,10 @@ class MockSearchService extends SearchService
 {
     public function searchProducts($query)
     {
-        $subcategory = new stdClass;
-        $subcategory->discount = 5;
+        $category = new stdClass;
+        $category->discount = 5;
         return factory(Product::class, 3)->make([
-            'subcategory' => $subcategory
+            'category' => $category
         ]);
     }
 }

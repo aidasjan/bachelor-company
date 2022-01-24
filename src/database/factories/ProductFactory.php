@@ -13,6 +13,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'price' => random_int(0, 100),
         'currency' => 'EUR',
         'unit' => 'unit',
-        'subcategory_id' => 1
+        'category_id' => 1
     ];
 });

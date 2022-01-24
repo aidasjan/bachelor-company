@@ -6,7 +6,7 @@
 
     <div class='row pt-5 pb-3'>
         <div class='col'>
-            <h1 style='text-transform: uppercase;'>{{$headline}}</h1>
+            <h1 class='text-uppercase'>{{$headline}}</h1>
             @if (!empty($discount) && $discount > 0)<h2 class='text_green'>{{$discount}}% {{ __('main.discount') }}</h2><span class='text_green'>{{ __('main.discount_products_desc') }}</span> @endif
         </div>
     </div>

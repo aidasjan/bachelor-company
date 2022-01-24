@@ -241,6 +241,14 @@ h1 {
   max-height: 150px;
 }
 
+.footer_main {
+  background-color: #196074;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  margin-top: 50px;
+}
+
 .navbar {
   background-color: #00b4be;
   padding-top: 5px;
@@ -248,12 +256,8 @@ h1 {
   font-weight: bold;
 }
 
-.footer_main {
-  background-color: #196074;
-  color: #fff;
-  position: absolute;
-  bottom: 0;
-  margin-top: 50px;
+.nav-link:hover {
+  color: #f1f1f1;
 }
 
 .btn-primary {

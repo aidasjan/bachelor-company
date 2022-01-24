@@ -4,7 +4,7 @@
     <div class='container'>
         <div class='row py-5'>
             <div class='col'>
-                <h1 style='text-uppercase'>PRIVACY POLICY</h1>
+                <h1 class='text-uppercase'>PRIVACY POLICY</h1>
             </div>
         </div>
         <div class='row'>

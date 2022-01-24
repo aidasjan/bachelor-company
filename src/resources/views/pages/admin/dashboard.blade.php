@@ -23,11 +23,11 @@
 
             <div class='row py-3'>
                 <div class='col'>
-                    @if (count($submitted_orders) > 0)
+                    @if (count($submittedOrders) > 0)
                     <table class='table table_main'>
                         <?php $counter = 1 ?>
                         <tr><th></th><th>ORDER</th><th>CLIENT</th><th>DATE</th></tr>
-                        @foreach ($submitted_orders as $order)
+                        @foreach ($submittedOrders as $order)
                             <tr>
                                 <td>{{$counter++}}.</td>
                                 <td><a href="{{url('/orders'.'/'.$order->id)}}">ORDER {{$order->id}}</td>
@@ -61,9 +61,8 @@
     <div class='row'>
         <div class='col-md py-4 mx-3 my-3 dashboard_box container_lightblue'>
             <h3>Import Data</h3>
-            <div class='pb-3'><span>Upload a file to import Products, Categories and Subcategories</span></div>
+            <div class='pb-3'><span>Upload a file to import Products and Categories</span></div>
             <a href="{{url('/import/upload/categories')}}" class='btn btn-primary m-2'>CATEGORIES</a>
-            <a href="{{url('/import/upload/subcategories')}}" class='btn btn-primary m-2'>SUBCATEGORIES</a>
             <a href="{{url('/import/upload/products')}}" class='btn btn-primary m-2'>PRODUCTS</a>
         </div>
     </div>

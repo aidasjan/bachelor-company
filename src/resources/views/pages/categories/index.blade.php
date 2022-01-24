@@ -62,11 +62,11 @@
                 <h2 class='text-uppercase mb-5'>{{ __('main.current_discounts') }}</h2>
                 <table class='table table_main h5'>
                     <?php $counter = 1 ?>
-                    @foreach ($discountCategories as $subcategory)
+                    @foreach ($discountCategories as $category)
                         <tr>
                             <td>{{$counter++}}.</td>
-                            <td><a href="{{url($subcategory->getDisplayUrl())}}" class='text-uppercase'>{{$subcategory->name}}</a></td>
-                            <td class='font-weight-bold py-4'>{{$subcategory->discount}}%</td>
+                            <td><a href="{{url($category->getDisplayUrl())}}" class='text-uppercase'>{{$category->name}}</a></td>
+                            <td class='font-weight-bold py-4'>{{$category->discount}}%</td>
                         </tr>
                     @endforeach
                 </table>

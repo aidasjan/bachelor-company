@@ -5,7 +5,7 @@
                 <h3 class='py-2'>Welcome!</h3>
                 <b>We use cookies to provide best possible user experience. By using this service you agree to our Privacy Policy.</b><br>
             </div>
-            <div class="modal-footer" style='border:0;'>
+            <div class="modal-footer border-0">
                 <a href="{{url('/privacy-policy')}}" class='link_main mx-3'>Learn More</a>
                 <a href="{{url('/cookies-agree')}}"><button id="button_cookies_agree" type="button" class="btn btn-primary">CONTINUE</button></a>
             </div>

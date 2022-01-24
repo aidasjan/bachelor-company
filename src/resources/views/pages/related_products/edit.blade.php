@@ -15,13 +15,12 @@
 
             <form action="{{action('RelatedProductsController@store')}}" method='POST'>
                 <table class='table_main'>
-                    <tr><th></th><th>CATEGORY</th><th>SUBCATEGORY</th><th>CODE</th><th>NAME</th><th>RELATED</th></tr>
+                    <tr><th></th><th>CATEGORY</th><th>CODE</th><th>NAME</th><th>RELATED</th></tr>
                     <?php $counter = 1; ?>
                     @foreach ($products as $product)
                         <tr>
                             <td>{{$counter++}}.</td>
-                            <td>{{$product->subcategory->category->name}}</td>
-                            <td>{{$product->subcategory->name}}</td>
+                            <td>{{$product->category->name}}</td>
                             <td>{{$product->code}}</td>
                             <td>{{$product->name}}</td>
                             <td><input type="checkbox" name="{{$product->id}}" @if ($relatedProducts->contains('related_product_id', $product->id)) checked @endif></td>

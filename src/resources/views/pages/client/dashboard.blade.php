@@ -30,8 +30,8 @@
                     <div class='col py-2 dashboard_box container_lightblue'>
                         <div class='row'>
                             <div class='col text-left py-3'>
-                                <h3>{{ __('main.unsubmitted_orders') }}</h3>
-                                <span>{{ __('main.unsubmitted_orders_desc') }}</span>
+                                <h3>{{ __('main.unsubmittedOrders') }}</h3>
+                                <span>{{ __('main.unsubmittedOrders_desc') }}</span>
                             </div>
                             <div class='col text-right py-3'>
                                 <a class='btn btn-primary text-uppercase' href="{{url('/orders/status/0')}}">{{ __('main.view_all') }}</a>
@@ -40,11 +40,11 @@
 
                         <div class='row py-3'>
                             <div class='col'>
-                                @if (count($unsubmitted_orders) > 0)
+                                @if (count($unsubmittedOrders) > 0)
                                 <table class='table table_main'>
                                     <?php $counter = 1 ?>
                                     <tr><th></th><th>{{ __('main.order') }}</th><th>{{ __('main.date') }}</th></tr>
-                                    @foreach ($unsubmitted_orders as $order)
+                                    @foreach ($unsubmittedOrders as $order)
                                         <tr>
                                             <td>{{$counter++}}.</td>
                                             <td><a href="{{url('/orders'.'/'.$order->id)}}" class='text-uppercase'>{{ __('main.order') }} {{$order->id}}</td>
@@ -64,8 +64,8 @@
                     <div class='col py-2 dashboard_box container_lightblue'>
                         <div class='row'>
                             <div class='col text-left py-3'>
-                                <h3>{{ __('main.submitted_orders') }}</h3>
-                                <span>{{ __('main.submitted_orders_desc') }}</span>
+                                <h3>{{ __('main.submittedOrders') }}</h3>
+                                <span>{{ __('main.submittedOrders_desc') }}</span>
                             </div>
                             <div class='col text-right py-3'>
                                 <a class='btn btn-primary text-uppercase' href="{{url('/orders/status/1')}}">{{ __('main.view_all') }}</a>
@@ -74,11 +74,11 @@
 
                         <div class='row py-3'>
                             <div class='col'>
-                                @if (count($submitted_orders) > 0)
+                                @if (count($submittedOrders) > 0)
                                 <table class='table table_main'>
                                     <?php $counter = 1 ?>
                                     <tr><th></th><th>{{ __('main.order') }}</th><th>{{ __('main.date') }}</th></tr>
-                                    @foreach ($submitted_orders as $order)
+                                    @foreach ($submittedOrders as $order)
                                         <tr>
                                             <td>{{$counter++}}.</td>
                                             <td><a href="{{url('/orders'.'/'.$order->id)}}" class='text-uppercase'>{{ __('main.order') }} {{$order->id}}</td>
@@ -119,7 +119,7 @@
                                     @foreach ($discounts as $discount)
                                         <tr>
                                             <td>{{$counter++}}.</td>
-                                            <td><a href="{{url($discount->subcategory->getDisplayUrl())}}">{{$discount->subcategory_name}}</td>
+                                            <td><a href="{{url($discount->category->getDisplayUrl())}}">{{$discount->category->name}}</td>
                                             <td>{{$discount->discount}}%</td>
                                         </tr>
                                     @endforeach

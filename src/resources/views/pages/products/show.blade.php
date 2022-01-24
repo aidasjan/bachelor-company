@@ -48,7 +48,7 @@
                 </div>
                 <div class='row pb-2'>
                     <div class='col-md'>
-                        <h3 style='color: #00b4be'>{{number_format($product->price, 2, '.', '').' '.$product->currency.' / '.$product->unit}}</h3>
+                        <h3 class='text_main'>{{number_format($product->price, 2, '.', '').' '.$product->currency.' / '.$product->unit}}</h3>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                         <table class='table table-responsive-md table_main mb-3'>
                             <tr><th></th><th>{{ __('main.code') }}</th><th>{{ __('main.name') }}</th><th>{{ __('main.unit') }}</th><th>{{ __('main.currency') }}</th><th>{{ __('main.price') }} / {{ __('main.unit') }}</th><th>{{ __('main.quantity') }}</th></tr>
                             <?php $counter = 1 ?>
-                            <tr style='background-color:#fff'>
+                            <tr class="container_white">
                                 <td>{{$counter++}}.</td>
                                 <td>{{$product->code}}</td>
                                 <td><a href="{{url('/products'.'/'.$product->id)}}">{{$product->name}}</a></td>

@@ -3,7 +3,7 @@
 namespace App\Imports;
 
 use App\Product;
-use App\Subcategory;
+use App\Category;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
@@ -29,7 +29,7 @@ class ProductsImport extends GenericImport implements ToCollection
                 'price' => $item[2],
                 'currency' => $item[3],
                 'unit' => $item[4],
-                'subcategory_code' => $item[5]
+                'category_code' => $item[5]
             ];
             
             return $this->validatedInputs($product, $key, [
@@ -38,7 +38,7 @@ class ProductsImport extends GenericImport implements ToCollection
                 'price' => 'required|numeric',
                 'currency' => 'required',
                 'unit' => 'required',
-                'subcategory_code' => 'required',
+                'category_code' => 'required',
             ]);
         });
     }
@@ -58,7 +58,7 @@ class ProductsImport extends GenericImport implements ToCollection
             $record->price = $updated_record['price'];
             $record->currency = $updated_record['currency'];
             $record->unit = $updated_record['unit'];
-            $record->subcategory_id = Subcategory::where('code', $updated_record['subcategory_code'])->first()->id;
+            $record->category_id = Category::where('code', $updated_record['category_code'])->first()->id;
             $record->save();
             $this->addInfoMessageToResults($key, $record->code, $is_new);
         }
@@ -74,8 +74,8 @@ class ProductsImport extends GenericImport implements ToCollection
             $this->addErrorMessageToResults($key, 'Duplicate code "'.$record['code'].'"');
             return false;
         }
-        if (!Subcategory::where('code', '=', $record['subcategory_code'])->exists()) {
-            $this->addErrorMessageToResults($key, 'Subcategory "'.$record['subcategory_code'].'" does not exist.');
+        if (!Category::where('code', '=', $record['category_code'])->exists()) {
+            $this->addErrorMessageToResults($key, 'Category "'.$record['category_code'].'" does not exist.');
             return false;
         }
         return true;

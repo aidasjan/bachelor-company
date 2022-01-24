@@ -19,8 +19,7 @@
                     @foreach ($discounts as $discount)
                         <tr>
                             <td>{{$counter++}}.</td>
-                            <td>{{$discount->subcategory->category->name}}</td>
-                            <td><a href="{{url($discount->subcategory->getDisplayUrl())}}">{{$discount->subcategory->name}}</td>
+                            <td><a href="{{url($discount->category->getDisplayUrl())}}">{{$discount->category->name}}</td>
                             <td>{{$discount->discount}}%</td>
                         </tr>
                     @endforeach

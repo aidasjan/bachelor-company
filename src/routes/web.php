@@ -27,7 +27,7 @@ Route::delete('categories/{category}/images', 'CategoriesController@destroyImage
 
 // Products routes
 Route::post('products', 'ProductsController@store')->name('products.store');
-Route::get('products/create/{subcategory}', 'ProductsController@create')->name('products.create');
+Route::get('products/create/{category}', 'ProductsController@create')->name('products.create');
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 Route::put('products/{product}', 'ProductsController@update')->name('products.update');
 Route::delete('products/{product}', 'ProductsController@destroy')->name('products.destroy');

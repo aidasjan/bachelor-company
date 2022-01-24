@@ -109,7 +109,7 @@ class ProductsController extends Controller
             if ($product === null) {
                 abort(404);
             }
-            return redirect($product->subcategory->getDisplayUrl());
+            return redirect($product->category->getDisplayUrl());
         } else abort(404);
     }
 

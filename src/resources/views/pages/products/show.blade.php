@@ -115,7 +115,7 @@
                 
                 @if (!Auth::guest() && Auth::user()->isClient() && Session::has('current_order'))
                     <h2 class='pt-2 pb-4 text-uppercase'>{{ __('main.add_to_order') }}</h2>
-                    <form action="{{action('OrderProductsController@store')}}" method='POST'>
+                    <form action="{{action('OrdersController@storeOrderProducts')}}" method='POST'>
                         <table class='table table-responsive-md table_main mb-3'>
                             <tr><th></th><th>{{ __('main.code') }}</th><th>{{ __('main.name') }}</th><th>{{ __('main.unit') }}</th><th>{{ __('main.currency') }}</th><th>{{ __('main.price') }} / {{ __('main.unit') }}</th><th>{{ __('main.quantity') }}</th></tr>
                             <?php $counter = 1 ?>

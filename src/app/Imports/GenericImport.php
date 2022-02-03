@@ -6,45 +6,45 @@ use Validator;
 
 abstract class GenericImport
 {
-    protected $import_results = [];
+    protected $importResults = [];
 
     public function getImportResults()
     {
-        return $this->import_results;
+        return $this->importResults;
     }
 
     protected function initializeResults($records)
     {
-        $this->import_results = [
+        $this->importResults = [
             'errors' => collect([]),
             'info' => collect([]),
         ];
 
         foreach ($records as $key=>$value) {
-            $this->import_results['errors']->put($key+1, collect([]));
-            $this->import_results['info']->put($key+1, collect([]));
+            $this->importResults['errors']->put($key+1, collect([]));
+            $this->importResults['info']->put($key+1, collect([]));
         }
     }
 
     protected function removeEmptyResults()
     {
-        $this->import_results['errors'] = $this->import_results['errors']->filter(function($item) { return $item->count() > 0; });
-        $this->import_results['info'] = $this->import_results['info']->filter(function($item) { return $item->count() > 0; });
+        $this->importResults['errors'] = $this->importResults['errors']->filter(function($item) { return $item->count() > 0; });
+        $this->importResults['info'] = $this->importResults['info']->filter(function($item) { return $item->count() > 0; });
     }
 
     protected function addInfoMessageToResults($key, $code, $is_new)
     {
-        $this->import_results['info'][$key+1]->push("\"$code\" has been successfully ".($is_new ? "added" : "updated"));
+        $this->importResults['info'][$key+1]->push("\"$code\" has been successfully ".($is_new ? "added" : "updated"));
     }
 
     protected function addErrorMessageToResults($key, $message)
     {
-        $this->import_results['errors'][$key+1]->push($message);
+        $this->importResults['errors'][$key+1]->push($message);
     }
 
     protected function addErrorMessagesToResults($key, $messages)
     {
-        $this->import_results['errors'][$key+1] = $this->import_results['errors'][$key+1]->concat($messages);
+        $this->importResults['errors'][$key+1] = $this->importResults['errors'][$key+1]->concat($messages);
     }
 
     protected function validatedInputs($record, $key, $rules) {

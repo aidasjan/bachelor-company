@@ -44,7 +44,7 @@
         <div class='col'>
         @if (count($products) > 0)
             @if (!Auth::guest() && Auth::user()->isClient() && Session::has('current_order'))
-                <form action="{{action('OrderProductsController@store')}}" method='POST'>
+                <form action="{{action('OrdersController@storeOrderProducts')}}" method='POST'>
                     <table class='table table-responsive-md table_main'>
                         <tr><th></th><th>{{ __('main.code') }}</th><th>{{ __('main.name') }}</th><th>{{ __('main.unit') }}</th><th>{{ __('main.currency') }}</th><th>{{ __('main.price') }} / {{ __('main.unit') }}</th><th>{{ __('main.quantity') }}</th></tr>
                         <?php $counter = 1 ?>

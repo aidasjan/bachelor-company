@@ -23,7 +23,7 @@ class DiscountService
 
     public function store(Request $request)
     {
-        $user = $this->userService->find($request->input('discountUser'));
+        $user = $this->userService->find($request->input('discount_user'));
         if ($user === null || !($user->isClient() || $user->isNewClient())) {
             return null;
         }
@@ -62,7 +62,7 @@ class DiscountService
 
     public function storeAll(Request $request)
     {
-        $user = $this->userService->find($request->input('discountUser'));
+        $user = $this->userService->find($request->input('discount_user'));
         if ($user === null || !($user->isClient() || $user->isNewClient())) {
             return null;
         }

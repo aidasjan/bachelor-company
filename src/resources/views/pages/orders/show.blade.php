@@ -31,12 +31,12 @@
                 @endforeach
                 <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>{{ __('main.total') }}:</th>
                     <th>
-                        @if ($total_order_price_EUR != 0 && $total_order_price_USD == 0)
-                            {{number_format($total_order_price_EUR, 2, '.', '')}} EUR
-                        @elseif ($total_order_price_EUR == 0 && $total_order_price_USD != 0)
-                            {{number_format($total_order_price_USD, 2, '.', '')}} USD
+                        @if ($totalOrderPriceEUR != 0 && $totalOrderPriceUSD == 0)
+                            {{number_format($totalOrderPriceEUR, 2, '.', '')}} EUR
+                        @elseif ($totalOrderPriceEUR == 0 && $totalOrderPriceUSD != 0)
+                            {{number_format($totalOrderPriceUSD, 2, '.', '')}} USD
                         @else
-                            {{number_format($total_order_price_EUR, 2, '.', '')}} EUR + <br>{{number_format($total_order_price_USD, 2, '.', '')}} USD
+                            {{number_format($totalOrderPriceEUR, 2, '.', '')}} EUR + <br>{{number_format($totalOrderPriceUSD, 2, '.', '')}} USD
                         @endif
 
                     </th>

@@ -19,7 +19,7 @@
                 @foreach ($orders as $order)
                     <tr>
                         <td>{{$counter++}}.</td>
-                        @if (Auth::user()->isAdmin()) <td>{{$order->client->name}}</td> @endif
+                        @if (Auth::user()->isAdmin()) <td>{{$order->getClient()->name}}</td> @endif
                         <td><a href="{{url('/orders'.'/'.$order->id)}}" class='text-uppercase'>{{ __('main.order') }} {{$order->id}}</td>
                         <td>{{$order->getStatus()}}</td>
                         <td>{{$order->updated_at}}</td>

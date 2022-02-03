@@ -20,7 +20,7 @@
                 <div class='form-group'>
                     <input type='number' value='' name='discount' class='form-control' placeholder='Discount (%)'>
                 </div>
-                <input type='hidden' value='{{$user->id}}' name='discountUser'>
+                <input type='hidden' value='{{$user->id}}' name='discount_user'>
                 {{csrf_field()}}
                 <button type='submit' class='btn btn-primary'>ASSIGN</button>
             </form>
@@ -43,7 +43,7 @@
                     @endforeach
                     <td></td><td></td>
                     <td class='text-center'>
-                        <input type='hidden' name='discountUser' value='{{$user->id}}'>
+                        <input type='hidden' name='discount_user' value='{{$user->id}}'>
                         {{csrf_field()}}
                         <button type='submit' class='btn btn-primary'>SAVE SELECTIONS</button>
                     </td>

@@ -62,7 +62,10 @@ class CategoriesController extends Controller
 
     public function show($code)
     {
-        $category = Category::where('code', $code)->first();
+        $category = $this->categoryService->findByCode($code);
+        if ($category === null) {
+            abort(404);
+        }
         if (count($category->products) > 0) {
             $products = $this->productService->getProductsByCategory($category->id);
             $data = array(

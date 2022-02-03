@@ -79,14 +79,12 @@ Route::get('orders', 'OrdersController@index')->name('orders.index');
 Route::get('orders/cancel', 'OrdersController@cancel')->name('orders.cancel');
 Route::get('orders/status/{status}', 'OrdersController@indexByStatus')->name('orders.indexByStatus');
 Route::post('orders', 'OrdersController@store')->name('orders.store');
+Route::post('orders/products', 'OrdersController@storeOrderProducts');
 Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
 Route::put('orders/{order}', 'OrdersController@update')->name('orders.update');
 Route::delete('orders/{order}', 'OrdersController@destroy')->name('orders.destroy');
 Route::get('orders/{order}/edit', 'OrdersController@edit')->name('orders.edit');
 Route::post('orders/destroy_unsubmitted', 'OrdersController@destroyUnsubmitted')->name('orders.destroy_unsubmitted');
-
-// Order products routes
-Route::post('orderProducts', 'OrderProductsController@store')->name('orderProducts.store');
 
 // Discounts routes
 Route::get('discounts', 'DiscountsController@index')->name('discounts.index');

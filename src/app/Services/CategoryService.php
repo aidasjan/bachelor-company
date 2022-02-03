@@ -18,11 +18,18 @@ class CategoryService
         return Category::where('parent_id', null)->orderBy('position')->get();
     }
 
-    public function all() {
+    public function all()
+    {
         return Category::all();
     }
 
-    public function find($id) {
+    public function findByCode($code)
+    {
+        return Category::where('code', $code)->first();
+    }
+
+    public function find($id)
+    {
         return Category::find($id);
     }
 

@@ -36,7 +36,7 @@ class DiscountsController extends Controller
 
     private function validateStoreRequest(Request $request) {
         $this->validate($request, [
-            'discountUser' => 'required'
+            'discount_user' => 'required'
         ]);
     }
 
@@ -52,7 +52,7 @@ class DiscountsController extends Controller
 
     private function validateStoreAllRequest(Request $request) {
         $this->validate($request, [
-            'discountUser' => 'required',
+            'discount_user' => 'required',
             'discount' => 'required'
         ]);
     }

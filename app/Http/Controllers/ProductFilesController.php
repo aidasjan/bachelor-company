@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use App\File;
+use App\Models\Product;
+use App\Models\File;
 use App\Services\FileService;
 
 class ProductFilesController extends Controller

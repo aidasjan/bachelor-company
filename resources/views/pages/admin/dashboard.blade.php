@@ -96,7 +96,7 @@
                     <span>If data in database was altered (some products were deleted or changed) you should perform this action. Otherwise clients may get incorrect info or fail to submit orders.</span>
                 </div>
                 <div class='col-md py-2 text-right'>
-                    <form action='{{ action('OrdersController@destroyUnsubmitted')}}' method='POST'>
+                    <form action='{{ action('App\Http\Controllers\OrdersController@destroyUnsubmitted')}}' method='POST'>
                         {{csrf_field()}}
                         <button type='submit' class='btn btn-danger' href='#'>CLEAR ORDERS</button>
                     </form>

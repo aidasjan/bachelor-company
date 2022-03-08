@@ -48,7 +48,7 @@
 
     @if (!Auth::guest() && Auth::user()->isClient() && $order->status === 0)
         <div class='my-3'>
-            <form action='{{ action('OrdersController@update', $order->id)}}' method='POST'>
+            <form action='{{ action('App\Http\Controllers\OrdersController@update', $order->id)}}' method='POST'>
                 <input type='hidden' name='_method' value='PUT'>
                 {{csrf_field()}}
                 <button type='submit' class='btn btn-primary text-uppercase'>{{ __('main.submit_order') }}</button>
@@ -61,7 +61,7 @@
 
     @if ((!Auth::guest() && Auth::user()->isClient() && $order->status === 0) || (!Auth::guest() && Auth::user()->isAdmin()))
         <div class='my-3'>
-            <form action='{{ action('OrdersController@update', $order->id)}}' method='POST'>
+            <form action='{{ action('App\Http\Controllers\OrdersController@update', $order->id)}}' method='POST'>
                 <input type='hidden' name='_method' value='DELETE'>
                 {{csrf_field()}}
                 <button type='submit' class='btn btn-link link_red text-uppercase' href='#'>{{ __('main.discard_order') }}</button>

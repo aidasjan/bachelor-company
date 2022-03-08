@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Category;
-use App\File;
+use App\Models\Category;
+use App\Models\File;
 use Illuminate\Http\Request;
 
 class CategoryService

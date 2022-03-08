@@ -5,7 +5,7 @@
         <div class='row py-5'>
             <div class='col container_grey py-5'>
                 <h1>ADD NEW FILE</h1>
-                <form action='{{ action('ProductFilesController@store') }}' method='POST' enctype='multipart/form-data'>
+                <form action='{{ action('App\Http\Controllers\ProductFilesController@store') }}' method='POST' enctype='multipart/form-data'>
                     <input type='hidden' value='{{$product_id}}' name='product_id'>
                     <div class='form-group col-md-4 offset-md-4 align-self-center'>
                         <label>Name</label>

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
-use App\Discount;
 use App\Services\DashboardService;
 
 class DashboardController extends Controller

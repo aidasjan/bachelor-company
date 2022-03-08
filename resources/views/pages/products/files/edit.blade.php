@@ -5,7 +5,7 @@
         <div class='row py-5'>
             <div class='col container_grey py-5'>
                 <h1>EDIT FILE</h1>
-                <form action='{{ action('ProductFilesController@update', $product_file->id) }}' method='POST'>
+                <form action='{{ action('App\Http\Controllers\ProductFilesController@update', $product_file->id) }}' method='POST'>
                     <input type='hidden' name='_method' value='PUT'>
                     <div class='form-group col-md-4 offset-md-4 align-self-center'>
                         <label>Name</label>
@@ -25,7 +25,7 @@
         </div>
         <div class='row pb-3'>
             <div class='col'>
-                <form action='{{ action('ProductFilesController@update', $product_file->id)}}' method='POST'>
+                <form action='{{ action('App\Http\Controllers\ProductFilesController@update', $product_file->id)}}' method='POST'>
                     <input type='hidden' name='_method' value='DELETE'>
                     {{csrf_field()}}
                     <button type='submit' class='btn btn-link link_red' href='#'>DELETE FILE</button>

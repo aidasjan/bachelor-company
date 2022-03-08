@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use App\RelatedProduct;
+use App\Models\Product;
+use App\Models\RelatedProduct;
 
 class RelatedProductsController extends Controller
 {

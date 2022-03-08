@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\RelatedProduct;
+use App\Models\RelatedProduct;
 
 class Product extends Model
 {
@@ -13,22 +13,22 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Category', 'category_id');
+        return $this->belongsTo('App\Models\Category', 'category_id');
     }
 
     public function files()
     {
-        return $this->belongsToMany('App\File', 'product_files');
+        return $this->belongsToMany('App\Models\File', 'product_files');
     }
 
     public function related_products()
     {
-        return $this->hasMany('App\RelatedProduct', 'product_id');
+        return $this->hasMany('App\Models\RelatedProduct', 'product_id');
     }
 
     public function orderProducts()
     {
-        return $this->hasMany('App\OrderProduct');
+        return $this->hasMany('App\Models\OrderProduct');
     }
 
 

@@ -6,7 +6,7 @@
     <div class='row py-5'>
         <div class='col container_grey py-5'>
             <h1>EDIT {{$product->code}}</h1>
-            <form action='{{ action('ProductsController@update', $product->id)}}' method='POST'>
+            <form action='{{ action('App\Http\Controllers\ProductsController@update', $product->id)}}' method='POST'>
                 <div class='form-group col-md-6 offset-md-3 align-self-center'>
                     <label>Product code</label>
                     <input type='text' value='{{$product->code}}' name='code' class='form-control' required>
@@ -41,7 +41,7 @@
     <div class='row'>
         <div class='col'>
             @include('inc.forms.delete_button', [
-                'action' => 'ProductsController@destroy',
+                'action' => 'App\Http\Controllers\ProductsController@destroy',
                 'action_param' => $product->id,
                 'button_text' => 'DELETE THIS PRODUCT',
                 'message' => 'This product will be removed from all orders. Files of this product will be deleted as well.',

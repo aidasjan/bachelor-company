@@ -12,7 +12,7 @@
 
     <div class='row py-3'>
         <div class='col'>
-            <form action='{{ $parent_id != null ? action('ReorderController@reorder', [$type, $parent_id]) : action('ReorderController@reorderRoot', $type) }}' method='POST'>
+            <form action='{{ $parent_id != null ? action('App\Http\Controllers\ReorderController@reorder', [$type, $parent_id]) : action('App\Http\Controllers\ReorderController@reorderRoot', $type) }}' method='POST'>
                 {{ csrf_field() }}
                 <div class='text-right'>
                     <button type='submit' class='btn btn-primary text-uppercase my-3'>Save Selections</button>

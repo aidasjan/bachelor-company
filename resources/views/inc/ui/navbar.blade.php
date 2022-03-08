@@ -19,7 +19,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right">
-                            <?php $categories = App\Category::where('parent_id', null)->orderBy('position')->get(); ?>
+                            <?php $categories = App\Models\Category::where('parent_id', null)->orderBy('position')->get(); ?>
                             @foreach ($categories as $category)
                                 <a class="dropdown-item" href="{{ url($category->getDisplayUrl()) }}">{{$category->name}}</a>
                             @endforeach
@@ -55,7 +55,7 @@
                                 <a class="dropdown-item" href="{{route('dashboard')}}">{{ __('main.dashboard') }}</a>
 
                                 @if (Auth::user()->isClient())
-                                    <a class="dropdown-item" href="{{ action('OrdersController@store') }}"
+                                    <a class="dropdown-item" href="{{ action('App\Http\Controllers\OrdersController@store') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('new-order-form').submit();">
                                         {{ __('main.make_order') }}
@@ -71,7 +71,7 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <form id="new-order-form" action="{{ action('OrdersController@store') }}" method="POST" class="d-none">
+                                <form id="new-order-form" action="{{ action('App\Http\Controllers\OrdersController@store') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>

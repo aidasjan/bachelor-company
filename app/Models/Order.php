@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+use App\Models\User;
 
 class Order extends Model
 {
@@ -13,12 +13,12 @@ class Order extends Model
 
     public function user()
     {
-        return $this->hasMany('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function orderProducts()
     {
-        return $this->hasMany('App\OrderProduct', 'order_id');
+        return $this->hasMany('App\Models\OrderProduct', 'order_id');
     }
 
     public function getTotalOrderPrice($user, $currency)

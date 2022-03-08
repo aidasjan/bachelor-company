@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Order;
-use App\Product;
-use App\RelatedProduct;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\RelatedProduct;
 use Illuminate\Http\Request;
 
 class ProductService

@@ -13,7 +13,7 @@
     <div class='row py-3'>
         <div class='col'>
 
-            <form action="{{action('RelatedProductsController@store')}}" method='POST'>
+            <form action="{{action('App\Http\Controllers\RelatedProductsController@store')}}" method='POST'>
                 <table class='table_main'>
                     <tr><th></th><th>CATEGORY</th><th>CODE</th><th>NAME</th><th>RELATED</th></tr>
                     <?php $counter = 1; ?>

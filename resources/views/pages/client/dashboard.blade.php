@@ -14,7 +14,7 @@
             <div class='col py-4 mx-3 dashboard_box container_lightblue'>
                 <h3>{{ __('main.make_order') }}</h3>
                 <span>{{ __('main.make_order_desc') }}</span>
-                <form action="{{ action('OrdersController@store') }}" method='POST'>
+                <form action="{{ action('App\Http\Controllers\OrdersController@store') }}" method='POST'>
                     {{csrf_field()}}
                     <button type='submit' class='btn btn-primary mt-4 mb-3 text-uppercase' href='#'>{{ __('main.new_order') }}</button>
                 </form>

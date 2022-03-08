@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Services\FileService;
@@ -12,11 +12,11 @@ class File extends Model
     public $timeStamps = true;
 
     public function products() {
-        return $this->belongsToMany('App\Product', 'product_files');
+        return $this->belongsToMany('App\Models\Product', 'product_files');
     }
 
     public function categories() {
-        return $this->belongsToMany('App\Category', 'category_files');
+        return $this->belongsToMany('App\Models\Category', 'category_files');
     }
 
     public function isImage() {

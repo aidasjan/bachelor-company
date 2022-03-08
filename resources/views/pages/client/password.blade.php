@@ -17,7 +17,7 @@
             <div class='col'>
                 <p class='pt-2 pb-4'>{{ __('main.password_desc') }}</p>
 
-                <form action="{{ action('UsersController@passwordChange') }}" method='POST'>
+                <form action="{{ action('App\Http\Controllers\UsersController@passwordChange') }}" method='POST'>
                     
                     <div class="form-group row">
                         <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('main.password') }}</label>

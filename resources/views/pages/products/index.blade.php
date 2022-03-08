@@ -29,7 +29,7 @@
                 <div class='m-1'>
                     <img src='{{url('/files/images/'.$file->id)}}' />
                     @if (!Auth::guest() && Auth::user()->isAdmin())
-                        <form action='{{ action('CategoriesController@destroyImage', $file->id)}}' method='POST'>
+                        <form action='{{ action('App\Http\Controllers\CategoriesController@destroyImage', $file->id)}}' method='POST'>
                             <input type='hidden' name='_method' value='DELETE'>
                             {{csrf_field()}}
                             <button type='submit' class='btn btn-link link_red'>DELETE</button>
@@ -44,7 +44,7 @@
         <div class='col'>
         @if (count($products) > 0)
             @if (!Auth::guest() && Auth::user()->isClient() && Session::has('current_order'))
-                <form action="{{action('OrdersController@storeOrderProducts')}}" method='POST'>
+                <form action="{{action('App\Http\Controllers\OrdersController@storeOrderProducts')}}" method='POST'>
                     <table class='table table-responsive-md table_main'>
                         <tr><th></th><th>{{ __('main.code') }}</th><th>{{ __('main.name') }}</th><th>{{ __('main.unit') }}</th><th>{{ __('main.currency') }}</th><th>{{ __('main.price') }} / {{ __('main.unit') }}</th><th>{{ __('main.quantity') }}</th></tr>
                         <?php $counter = 1 ?>

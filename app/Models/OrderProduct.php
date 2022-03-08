@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Product;
+use App\Models\Product;
 
 class OrderProduct extends Model
 {
@@ -12,7 +12,7 @@ class OrderProduct extends Model
     public $timeStamps = true;
 
     public function order(){
-        return $this->belongsTo('App\Order', 'order_id');
+        return $this->belongsTo('App\Models\Order', 'order_id');
     }
 
     public function getCodeAttribute($value){

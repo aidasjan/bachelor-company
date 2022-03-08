@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Exceptions\UserErrorException;
-use App\User;
+use App\Models\User;
 
 class UserService
 {

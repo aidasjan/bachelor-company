@@ -6,7 +6,7 @@
     <div class='row'>
         <div class='col container_grey py-5'>
             <h1 class='text-uppercase pb-3'>EDIT - {{$user->name}}</h1>
-            <form method="POST" action="{{ action('UsersController@update', $user->id) }}">
+            <form method="POST" action="{{ action('App\Http\Controllers\UsersController@update', $user->id) }}">
                 @csrf
 
                 <div class="form-group row">
@@ -39,7 +39,7 @@
 
     <div class='row'>
         <div class='col pt-4 pb-2'>
-            <form method="POST" action="{{ action('UsersController@resetPassword', $user->id) }}">
+            <form method="POST" action="{{ action('App\Http\Controllers\UsersController@resetPassword', $user->id) }}">
                 @csrf
                 <button type="submit" class="btn btn-link link_main">RESET PASSWORD</button>
             </form>
@@ -48,7 +48,7 @@
 
     <div class='row'>
         <div class='col py-1'>
-            <form method="POST" action="{{ action('UsersController@update', $user->id) }}">
+            <form method="POST" action="{{ action('App\Http\Controllers\UsersController@update', $user->id) }}">
                 @csrf
                 <input type='hidden' name='_method' value='DELETE'>
                 <button type="submit" class="btn btn-link link_red">DELETE USER</button>

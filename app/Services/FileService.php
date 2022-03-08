@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
-use App\File;
+use App\Models\File;
 
 class FileService
 {

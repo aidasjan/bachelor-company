@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Discount;
-use App\User;
-use App\Category;
+use App\Models\Discount;
+use App\Models\User;
+use App\Models\Category;
 use App\Services\DiscountService;
 
 class DiscountsController extends Controller

@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Product;
+use App\Models\Product;
 
 class RelatedProduct extends Model
 {
@@ -12,7 +12,7 @@ class RelatedProduct extends Model
     public $timeStamps = true;
 
     public function product(){
-        return $this->belongsTo('App\Product', 'product_id');
+        return $this->belongsTo('App\Models\Product', 'product_id');
     }
 
     public function getProduct(){

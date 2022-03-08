@@ -5,7 +5,7 @@
     <div class='row py-5'>
         <div class='col container_grey py-5'>
             <h1>ADD PRODUCT</h1>
-            <form action='{{ action('ProductsController@store')}}' method='POST'>
+            <form action='{{ action('App\Http\Controllers\ProductsController@store')}}' method='POST'>
                 <div class='form-group col-md-6 offset-md-3 align-self-center'>
                     <label>Product code</label>
                     <input type='text' value='' name='code' class='form-control' required>

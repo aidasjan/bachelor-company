@@ -16,7 +16,7 @@
             <p>Assign discount for all product groups with 0 values</p>
         </div>
         <div class='col-md text-right'>
-            <form action='{{ action('DiscountsController@storeAll')}}' method='POST'>
+            <form action='{{ action('App\Http\Controllers\DiscountsController@storeAll')}}' method='POST'>
                 <div class='form-group'>
                     <input type='number' value='' name='discount' class='form-control' placeholder='Discount (%)'>
                 </div>
@@ -30,7 +30,7 @@
     <div class='row py-3'>
         <div class='col'>
 
-            <form action="{{action('DiscountsController@store')}}" method='POST'>
+            <form action="{{action('App\Http\Controllers\DiscountsController@store')}}" method='POST'>
                 <table class='table_main'>
                     <tr><th></th><th>CATEGORY</th><th>DISCOUNT (%)</th></tr>
                     <?php $counter = 1; ?>

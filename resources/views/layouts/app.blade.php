@@ -45,10 +45,6 @@
         @if (session()->has('success') || $errors->any())
             @include('inc.ui.notification')
         @endif
-
-        @if (Cookie::get('cookies_agree') != '1' && Request::url() !== url('/privacy-policy'))
-            @include('inc.ui.cookie_consent')
-        @endif
     </div>
 </body>
 </html>

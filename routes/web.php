@@ -113,21 +113,8 @@ Route::get('files/images/{file}', 'App\Http\Controllers\FilesController@showImag
 // Backups routes
 Route::get('backup/scheduled/{token}', 'App\Http\Controllers\BackupsController@scheduledBackup');
 
-
 // Locale routes
-Route::get('/language/{locale}', function ($locale) {
-    if ($locale === 'en' || $locale === 'ru'){
-        session(['locale' => $locale]);
-        return redirect()->back();
-    }
-    else abort(404);
-});
-
-// Cookies routes
-Route::get('/cookies-agree', function () {
-    Cookie::queue('cookies_agree', '1', 60*24*365);
-    return back();
-});
+Route::get('/language/{locale}', 'App\Http\Controllers\LocaleController@changeLocale');
 
 // Privacy policy routes
 Route::get('/privacy-policy', function () {

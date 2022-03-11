@@ -11,6 +11,10 @@
 |
 */
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'App\Http\Controllers\CategoriesController@index')->name('index');
 
 // Categories routes

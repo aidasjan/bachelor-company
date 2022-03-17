@@ -52,30 +52,12 @@ Route::post('related-products', 'App\Http\Controllers\RelatedProductsController@
 
 // Users routes
 Route::get('users', 'App\Http\Controllers\UsersController@index')->name('users.index');
-Route::get('password', 'App\Http\Controllers\UsersController@password')->name('users.password');
-Route::post('password', 'App\Http\Controllers\UsersController@passwordChange')->name('users.password');
-Route::post('users/{user}/reset_password', 'App\Http\Controllers\UsersController@resetPassword')->name('users.reset_password');
-Route::get('users/{user}/edit', 'App\Http\Controllers\UsersController@edit')->name('users.edit');
-Route::put('users/{user}', 'App\Http\Controllers\UsersController@update')->name('users.update');
-Route::delete('users/{order}', 'App\Http\Controllers\UsersController@destroy')->name('users.destroy');
 Route::get('tutorial', 'App\Http\Controllers\UsersController@showTutorial')->name('users.tutorial');
-
-// Registration Routes...
 Route::get('register', 'App\Http\Controllers\UsersController@create')->name('users.create');
 Route::post('register', 'App\Http\Controllers\UsersController@store')->name('users.store');
 
-// Auth::routes();
-// Authentication Routes...
-Route::get('login', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
-Route::post('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
-
-// Password Reset Routes...
-//Route::get('password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//Route::post('password/email', 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-//Route::get('password/reset/{token}', 'App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
-//Route::post('password/reset', 'App\Http\Controllers\Auth\ResetPasswordController@reset');
-
+Route::get('login/{id}/{accessToken}', 'App\Http\Controllers\UsersController@login')->name('users.login');
+Route::post('logout', 'App\Http\Controllers\UsersController@logout')->name('logout');
 Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
 // Order routes

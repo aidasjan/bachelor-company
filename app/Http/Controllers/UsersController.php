@@ -4,14 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
 
     public function __construct(UserService $userService)
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['login']);
         $this->userService = $userService;
+    }
+
+    public function login($id, $accessToken) 
+    {
+        $user = $this->userService->find($id);
+        if ($user == null || $user->access_token !== $accessToken) {
+           abort(401);
+        }
+        Auth::login($user);
+        return redirect('/dashboard');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect('/');
     }
 
     public function index()
@@ -50,82 +68,5 @@ class UsersController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255']
         ]);
-    }
-
-    public function showTutorial()
-    {
-        if (auth()->user()->isClient() || auth()->user()->isAdmin()) {
-            return view('pages.client.tutorial');
-        }
-    }
-
-    public function password()
-    {
-        if (auth()->user()->isNewClient() || auth()->user()->isClient() || auth()->user()->isAdmin()) {
-            return view('pages.client.password');
-        } else abort(404);
-    }
-
-    public function passwordChange(Request $request)
-    {
-        if (auth()->user()->isNewClient() || auth()->user()->isClient() || auth()->user()->isAdmin()) {
-            $this->validatePasswordChangeRequest($request);
-            $this->userService->changePassword($request);
-            return redirect('/dashboard');
-        } else abort(404);
-    }
-
-    private function validatePasswordChangeRequest(Request $request)
-    {
-        $this->validate($request, [
-            'password' => ['required', 'string', 'min:8', 'max:255', 'confirmed']
-        ]);
-    }
-
-    public function resetPassword($id)
-    {
-        if (auth()->user()->isAdmin()) {
-            [$user, $randomPassword] = $this->userService->resetPassword($id);
-            $data = array(
-                'resetUserEmail' => $user->email,
-                'resetUserPassword' => $randomPassword
-            );
-            return redirect('users/' . $id . '/edit')->with($data);
-        } else abort(404);
-    }
-
-    public function edit($id)
-    {
-        if (auth()->user()->isAdmin()) {
-            $user = $this->userService->find($id);
-            if ($user === null) abort(404);
-            return view('pages.admin.users.edit')->with('user', $user);
-        } else abort(404);
-    }
-
-    public function update(Request $request, $id)
-    {
-        if (auth()->user()->isAdmin()) {
-            $this->validateUpdateRequest($request);
-            $user = $this->userService->update($request, $id);
-            if ($user == null) abort(404);
-            return redirect('/users');
-        } else abort(404);
-    }
-
-    private function validateUpdateRequest(Request $request)
-    {
-        $this->validate($request, [
-            'name' => ['required', 'string', 'max:255']
-        ]);
-    }
-
-    public function destroy($id)
-    {
-        if (auth()->user()->isAdmin()) {
-            $user = $this->userService->destroy($id);
-            if ($user === null) abort(404);
-            return redirect('/users');
-        } else abort(404);
     }
 }

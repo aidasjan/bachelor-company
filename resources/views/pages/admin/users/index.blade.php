@@ -12,7 +12,7 @@
         <div class='row py-3'>
             <div class='col'>
                 <table class='table table-responsive-md table_main'>
-                    <tr><th></th><th>NAME</th><th>EMAIL</th><th></th><th></th></tr>
+                    <tr><th></th><th>NAME</th><th>EMAIL</th><th></th></tr>
                     <?php $counter = 1 ?>
                     @foreach ($users as $user)
                         @if ($user->isClient() || $user->isNewClient())
@@ -20,7 +20,6 @@
                                 <td>{{$counter++}}.</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td><a href="{{url('users/'.$user->id.'/edit')}}" class='link_main'>EDIT</a></td>
                                 <td><a href="{{url('discounts/'.$user->id.'/edit')}}" class='link_main'>DISCOUNTS</a></td>
                             </tr>
                         @endif

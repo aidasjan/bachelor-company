@@ -15,8 +15,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-        if (auth()->user()->isNewClient()) return redirect('/password');
-
         if (auth()->user()->isClient()) {
             $data = $this->dashboardService->getClientDashboardData();
             return view('pages.client.dashboard')->with($data);

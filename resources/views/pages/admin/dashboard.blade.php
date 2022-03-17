@@ -72,16 +72,6 @@
             <h3>Additional settings</h3>
             <div class='row py-2'>
                 <div class='col-md-8 py-2 text-left'>
-                    <h5>Change password</h5>
-                    <span>It is advised to change your password every month</span>
-                </div>
-                <div class='col-md py-2 text-right'>
-                    <a class='btn btn-primary' href="{{url('/password')}}">CHANGE PASSWORD</a>
-                </div>
-            </div>
-            <hr>
-            <div class='row py-2'>
-                <div class='col-md-8 py-2 text-left'>
                     <h5>View unsubmitted orders</h5>
                     <span>View all orders that haven't been submitted by clients yet</span>
                 </div>

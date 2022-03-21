@@ -98,11 +98,6 @@ Route::get('backup/scheduled/{token}', 'App\Http\Controllers\BackupsController@s
 // Locale routes
 Route::get('/language/{locale}', 'App\Http\Controllers\LocaleController@changeLocale');
 
-// Privacy policy routes
-Route::get('/privacy-policy', function () {
-    return view('pages.privacy')->with('pageName', 'Privacy Policy');
-});
-
 // Misc routes
 Route::get('home', function(){
     return redirect('/');

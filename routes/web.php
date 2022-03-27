@@ -43,6 +43,22 @@ Route::get('search/products', 'App\Http\Controllers\ProductsController@search')-
 Route::get('recommendations/parameters', 'App\Http\Controllers\RecommendationsController@showParameters')->name('recommendations.parameters');
 Route::get('recommendations/{usage}', 'App\Http\Controllers\RecommendationsController@show')->name('recommendations');
 
+// Usages
+Route::get('usages', 'App\Http\Controllers\UsagesController@index')->name('usages.index');
+Route::get('usages/create', 'App\Http\Controllers\UsagesController@create')->name('usages.create');
+Route::post('usages', 'App\Http\Controllers\UsagesController@store')->name('usages.store');
+Route::get('usages/{usage}/edit', 'App\Http\Controllers\UsagesController@edit')->name('usages.edit');
+Route::put('usages/{usage}', 'App\Http\Controllers\UsagesController@update')->name('usages.update');
+Route::delete('usages/{usage}', 'App\Http\Controllers\UsagesController@destroy')->name('usages.destroy');
+
+// Parameters
+Route::get('parameters', 'App\Http\Controllers\ParametersController@index')->name('parameters.index');
+Route::get('parameters/create', 'App\Http\Controllers\ParametersController@create')->name('parameters.create');
+Route::post('parameters', 'App\Http\Controllers\ParametersController@store')->name('parameters.store');
+Route::get('parameters/{parameter}/edit', 'App\Http\Controllers\ParametersController@edit')->name('parameters.edit');
+Route::put('parameters/{parameter}', 'App\Http\Controllers\ParametersController@update')->name('parameters.update');
+Route::delete('parameters/{parameter}', 'App\Http\Controllers\ParametersController@destroy')->name('parameters.destroy');
+
 // Product Files
 Route::post('product-files', 'App\Http\Controllers\ProductFilesController@store')->name('product_files.store');
 Route::get('product-files/create/{product}', 'App\Http\Controllers\ProductFilesController@create')->name('product_files.create');

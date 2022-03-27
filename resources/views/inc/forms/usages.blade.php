@@ -1,4 +1,4 @@
-<form method='GET' action={{ action($action) }}>
+<form method='GET' action={{ $action }}>
     <select class='form-control' name='usage'>
         @foreach ($usages as $usage)
             <option value='{{ $usage->id }}'>{{ $usage->name }}</option>

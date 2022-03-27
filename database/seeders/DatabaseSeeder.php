@@ -57,14 +57,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('usages')->insert([
-            [
-                'name' => 'Water Softening',
-                'description' => 'Residential and commercial water softening',
-            ],
-            [
-                'name' => 'Iron Removal',
-                'description' => 'Residential and commercial iron removal',
-            ]
+            [ 'name' => 'Water Softening' ],
+            [ 'name' => 'Iron Removal' ]
         ]);
 
         DB::table('parameters')->insert([

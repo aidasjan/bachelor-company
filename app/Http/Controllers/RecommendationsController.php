@@ -25,7 +25,7 @@ class RecommendationsController extends Controller
             abort(404);
         }
         $parameters = $this->parameterService->getParametersByUsage($usage);
-        return view('pages.recommendations.parameters')->with(['parameters' => $parameters, 'usage' => $usage]);
+        return view('pages.products.recommendations.parameters')->with(['parameters' => $parameters, 'usage' => $usage]);
     }
 
     public function show(Request $request, $usageId)

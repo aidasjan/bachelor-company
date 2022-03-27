@@ -69,7 +69,27 @@
 
     <div class='row'>
         <div class='col py-4 mx-3 my-3 dashboard_box container_lightblue'>
-            <h3>Additional settings</h3>
+            <h3>Additional Settings</h3>
+            <div class='row py-2'>
+                <div class='col-md-8 py-2 text-left'>
+                    <h5>Usages</h5>
+                    <span>Manage product usages</span>
+                </div>
+                <div class='col-md py-2 text-right'>
+                    <a href="{{url('/usages')}}" class='btn btn-primary'>MANAGE USAGES</a>
+                </div>
+            </div>
+            <hr/>
+            <div class='row py-2'>
+                <div class='col-md-8 py-2 text-left'>
+                    <h5>Properties</h5>
+                    <span>Manage product properties</span>
+                </div>
+                <div class='col-md py-2 text-right'>
+                    <a href="{{url('/properties')}}" class='btn btn-primary'>MANAGE PROPERTIES</a>
+                </div>
+            </div>
+            <hr/>
             <div class='row py-2'>
                 <div class='col-md-8 py-2 text-left'>
                     <h5>View unsubmitted orders</h5>
@@ -79,7 +99,7 @@
                     <a class='btn btn-primary' href="{{url('/orders/status/0')}}">UNSUBMITTED ORDERS</a>
                 </div>
             </div>
-            <hr>
+            <hr/>
             <div class='row py-2'>
                 <div class='col-md-8 py-2 text-left'>
                     <h5>Clear all unsubmitted orders</h5>

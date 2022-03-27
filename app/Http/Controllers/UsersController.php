@@ -51,14 +51,8 @@ class UsersController extends Controller
     {
         if (auth()->user()->isAdmin()) {
             $this->validateStoreRequest($request);
-            $randomPassword = $this->userService->store($request);
-
-            $data = array(
-                'newUserEmail' => $request->input('email'),
-                'newUserPassword' => $randomPassword
-            );
-
-            return redirect('register')->with($data);
+            $this->userService->store($request);
+            return redirect('/users');
         } else abort(404);
     }
 

@@ -2,11 +2,15 @@
 
 return [
 
+    'gateway_url' => env('GATEWAY_URL'),
+
     'company_info' => [
+        'id' => env('COMPANY_ID'),
         'name' => 'WMP',
         'email' => 'wmp@wmp.local',
         'webpage' => 'www.wmp.local',
-        'phone' => '+370'
+        'phone' => '+370',
+        'logo_url' => env('LOGO_URL')
     ],
 
     'files' => [

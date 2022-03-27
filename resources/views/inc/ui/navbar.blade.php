@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src='{{asset('img/wmp-logo.svg')}}' height='50px'>
+                <img src='{{config('custom.company_info.logo_url')}}' height='50px'>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <i class="fas fa-bars text_white"></i>
@@ -10,6 +10,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase text_white" href="{{config('custom.gateway_url')}}">GATEWAY</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-uppercase text_white" href="{{route('index')}}">{{ __('main.home') }}</a>
                     </li>

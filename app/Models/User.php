@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Discount', 'user_id');
     }
 
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company', 'company_id');
+    }
+
     public function getEmailAttribute($value)
     {
         if (auth()->user() && (auth()->user()->isAdmin() || auth()->user()->id === $this->id))
@@ -70,7 +75,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === 'admin';
+        return $this->role === 'admin' && $this->company->id == config('custom.company_info.id');
     }
 
     public function isClient()

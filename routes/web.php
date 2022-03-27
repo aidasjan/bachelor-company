@@ -102,6 +102,8 @@ Route::get('discounts/{user}/edit', 'App\Http\Controllers\DiscountsController@ed
 Route::get('import/upload/{type}', 'App\Http\Controllers\ImportController@showUploadForm');
 Route::post('import/import/{type}', 'App\Http\Controllers\ImportController@importFromFile');
 
+Route::get('export/{type}', 'App\Http\Controllers\ExportController@export');
+
 // Reorder
 Route::get('reorder/{type}/{parent_id}', 'App\Http\Controllers\ReorderController@index');
 Route::get('reorder/{type}', 'App\Http\Controllers\ReorderController@index');

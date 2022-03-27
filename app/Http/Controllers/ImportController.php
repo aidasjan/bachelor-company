@@ -25,7 +25,7 @@ class ImportController extends Controller
     {
         if (auth()->user()->isAdmin()) {
             $this->validateImportRequest($request);
-            $importResults = $this->importService->importFromFile($request, $type);
+            $importResults = $this->importService->importFromFile($request->file('import_file'), $type);
             if ($importResults === null) {
                 abort(404);
             }

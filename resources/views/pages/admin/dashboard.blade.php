@@ -59,11 +59,20 @@
     </div>
 
     <div class='row'>
-        <div class='col-md py-4 mx-3 my-3 dashboard_box container_lightblue'>
-            <h3>Import Data</h3>
-            <div class='pb-3'><span>Upload a file to import Products and Categories</span></div>
-            <a href="{{url('/import/upload/categories')}}" class='btn btn-primary m-2'>CATEGORIES</a>
-            <a href="{{url('/import/upload/products')}}" class='btn btn-primary m-2'>PRODUCTS</a>
+        <div class='col-md py-3 mx-3 my-3 dashboard_box container_lightblue'>
+            <div class='py-3'>
+                <h3>Import Data</h3>
+                <div class='pb-3'><span>Upload a file to import Products and Categories</span></div>
+                <a href="{{url('/import/upload/categories')}}" class='btn btn-primary m-2'>CATEGORIES</a>
+                <a href="{{url('/import/upload/products')}}" class='btn btn-primary m-2'>PRODUCTS</a>
+            </div>
+            <hr />
+            <div class='py-3'>
+                <h3>Export Data</h3>
+                <div class='pb-3'><span>Select an entity to export</span></div>
+                <a href="{{url('/export/categories')}}" class='btn btn-primary m-2'>CATEGORIES</a>
+                <a href="{{url('/export/products')}}" class='btn btn-primary m-2'>PRODUCTS</a>
+            </div>
         </div>
     </div>
 

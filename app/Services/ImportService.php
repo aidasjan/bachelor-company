@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CategoriesImport;
 use App\Imports\ProductsImport;
@@ -19,11 +18,10 @@ class ImportService
     {
         $import = $this->getImportByType($type);
         if ($import) {
-            $file_service = new FileService;
-            $file = $file_service->uploadFile($requestFile, 'import_file', null, 'public');
-            $uploaded_file_path = $file_service->getValidatedFilePath($file->id);
-            Excel::import($import, $uploaded_file_path);
-            $file_service->deleteFile($file->id);
+            $file = $this->fileService->uploadFile($requestFile, 'import_file', null, 'public');
+            $uploadedFilePath = $this->fileService->getValidatedFilePath($file->id);
+            Excel::import($import, $uploadedFilePath);
+            $this->fileService->deleteFile($file->id);
             return $import->getImportResults();
         }
     }

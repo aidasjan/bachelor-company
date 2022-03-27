@@ -82,11 +82,11 @@
             <hr/>
             <div class='row py-2'>
                 <div class='col-md-8 py-2 text-left'>
-                    <h5>Properties</h5>
-                    <span>Manage product properties</span>
+                    <h5>Parameters</h5>
+                    <span>Manage product parameters</span>
                 </div>
                 <div class='col-md py-2 text-right'>
-                    <a href="{{url('/properties')}}" class='btn btn-primary'>MANAGE PROPERTIES</a>
+                    <a href="{{url('/parameters')}}" class='btn btn-primary'>MANAGE PARAMETERS</a>
                 </div>
             </div>
             <hr/>

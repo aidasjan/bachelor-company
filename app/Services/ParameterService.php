@@ -14,6 +14,11 @@ class ParameterService
         return Parameter::all();
     }
 
+    public function find($id)
+    {
+        return Parameter::find($id);
+    }
+
     public function getParametersWithProductValues($product, $usage)
     {
         $parameters = Parameter::all();
@@ -64,5 +69,30 @@ class ParameterService
 
     private function getParametersByProductAndUsageQuery($productId, $usageId) {
         return ProductParameter::where('product_id', $productId)->where('usage_id', $usageId);
+    }
+
+    public function store(Request $request)
+    {
+        $parameter = new Parameter;
+        $parameter->name = $request->input('name');
+        $parameter->save();
+        return $parameter;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $parameter = Parameter::find($id);
+        if ($parameter === null) return null;
+        $parameter->name = $request->input('name');
+        $parameter->save();
+        return $parameter;
+    }
+
+    public function destroy($id)
+    {
+        $parameter = Parameter::find($id);
+        if ($parameter === null) return null;
+        $parameter->safeDelete();
+        return $parameter;
     }
 }

@@ -15,13 +15,15 @@ class CreateProductParametersTable extends Migration
     {
         Schema::create('product_parameters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('value');
+            $table->double('value');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('parameter_id');
+            $table->unsignedBigInteger('usage_id');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('parameter_id')->references('id')->on('parameters');
+            $table->foreign('usage_id')->references('id')->on('usages');
         });
     }
 

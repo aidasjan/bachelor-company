@@ -31,6 +31,11 @@ class Product extends Model
         return $this->hasMany('App\Models\OrderProduct');
     }
 
+    public function parameters()
+    {
+        return $this->hasMany('App\Models\ProductParameter');
+    }
+
 
     public function getDiscount($user)
     {

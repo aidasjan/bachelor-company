@@ -14,6 +14,11 @@ class ProductService
         $this->searchService = $searchService;
     }
 
+    public function find($id)
+    {
+        return Product::find($id);
+    }
+
     public function getProductsBySearch($query)
     {
         $products = $this->searchService->searchProducts($query);

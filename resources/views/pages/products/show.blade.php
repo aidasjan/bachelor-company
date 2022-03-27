@@ -174,9 +174,28 @@
         </div>
         @endif
 
+        @if (!Auth::guest() && Auth::user()->isAdmin())
+            <div class='row'>
+                <div class='col-md container_lightblue py-5 my-4 w-100'>
+                    <div class='col-md-6 offset-md-3'>
+                        <div class='text-uppercase mb-4'><h2>EDIT PARAMETERS</h2></div>
+                        <form method='GET' action={{ action('App\Http\Controllers\ProductsController@editParameters', $product->id) }}>
+                            <div class='d-flex'>
+                                <select class='form-control mr-5' name='usage'>
+                                    @foreach ($usages as $usage)
+                                        <option value='{{ $usage->id }}'>{{ $usage->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button type='submit' class='btn btn-primary'>EDIT</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class='row'>
             <div class='col-md'>
-                <br>
                 @if (!Auth::guest() && Auth::user()->isAdmin())
                     <div class='mt-3'><a href="{{url('/products'.'/'.$product->id.'/edit')}}" class='link_main'>EDIT THIS PRODUCT</a></div>
                 @endif

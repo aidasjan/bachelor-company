@@ -40,6 +40,9 @@ Route::put('products/{product}/usages/{usage}/parameters', 'App\Http\Controllers
 
 Route::get('search/products', 'App\Http\Controllers\ProductsController@search')->name('products.search');
 
+Route::get('recommendations/parameters', 'App\Http\Controllers\RecommendationsController@showParameters')->name('recommendations.parameters');
+Route::get('recommendations/{usage}', 'App\Http\Controllers\RecommendationsController@show')->name('recommendations');
+
 // Product Files
 Route::post('product-files', 'App\Http\Controllers\ProductFilesController@store')->name('product_files.store');
 Route::get('product-files/create/{product}', 'App\Http\Controllers\ProductFilesController@create')->name('product_files.create');

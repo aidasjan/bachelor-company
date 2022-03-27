@@ -56,6 +56,16 @@
 
     <hr>
 
+    <div class='row container_lightblue py-5 my-4'>
+        <div class='col'>
+            <div class='col-md-6 offset-md-3'>
+                <div class='text-uppercase mb-4'><h2>GET RECOMMENDATIONS</h2></div>
+                <div class='mb-4'>What is the scope of your problem?</div>
+                @include('inc.forms.usages', ['action' => 'App\Http\Controllers\RecommendationsController@showParameters', 'buttonText' => 'SEE THE OPTIONS'])
+            </div>
+        </div>
+    </div>
+
     @if (count($discountCategories) > 0)
         <div class='row py-5'>
             <div class='col'>

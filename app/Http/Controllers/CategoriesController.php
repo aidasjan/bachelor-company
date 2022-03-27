@@ -6,23 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Services\CategoryService;
 use App\Services\ProductService;
+use App\Services\UsageService;
 
 class CategoriesController extends Controller
 {
-    public function __construct(CategoryService $categoryService, ProductService $productService)
+    public function __construct(CategoryService $categoryService, ProductService $productService, UsageService $usageService)
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
         $this->categoryService = $categoryService;
         $this->productService = $productService;
+        $this->usageService = $usageService;
     }
 
     public function index()
     {
         $categories = $this->categoryService->index();
         $discountCategories = $this->categoryService->getDiscountCategories();
+        $usages = $this->usageService->all();
         $data = array(
             'categories' => $categories,
-            'discountCategories' => $discountCategories
+            'discountCategories' => $discountCategories,
+            'usages' => $usages,
         );
         return view('pages.categories.index')->with($data);
     }

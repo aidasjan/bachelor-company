@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 
 class ProductService
 {
-    public function __construct(SearchService $searchService)
+    public function __construct(SearchService $searchService, ParameterService $parameterService)
     {
         $this->searchService = $searchService;
+        $this->parameterService = $parameterService;
     }
 
     public function find($id)
@@ -22,6 +23,12 @@ class ProductService
     public function getProductsBySearch($query)
     {
         $products = $this->searchService->searchProducts($query);
+        return $this->prepareProductList($products);
+    }
+
+    public function getProductsByParametersAndUsage($parameters, $usage)
+    {
+        $products = $this->parameterService->getProductsByParametersAndUsage($parameters, $usage);
         return $this->prepareProductList($products);
     }
 

@@ -125,4 +125,10 @@ return [
 
     'looking_for_lower_prices' => 'Looking for lower prices?',
     'get_your_personal_account' => 'Contact us via :email and ask for your personal WMP account login to obtain personal discounts and make orders',
+
+    'get_recommendations' => 'Get Recommendations',
+    'what_scope_problem' => 'What is the scope of your problem?',
+    'see_options' => 'See Options',
+    'parameters' => 'Parameters',
+    'set_additional_parameters' => 'Set additional parameters to suit your needs. You can leave some of the fields blank.',
 ];

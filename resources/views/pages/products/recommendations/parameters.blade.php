@@ -5,8 +5,8 @@
 <div class='container'>
     <div class='row py-5'>
         <div class='col container_grey py-5'>
-            <h1>{{$usage->name}} Parameters</h1>
-            <div>Set additional parameters to suit your needs. You can leave some of the fields blank.</div>
+            <h1>{{$usage->name}} {{__('main.parameters')}}</h1>
+            <div>{{__('main.set_additional_parameters')}}</div>
             <form action='{{ action('App\Http\Controllers\RecommendationsController@show', $usage->id)}}' method='GET'>
                 <div class='my-5'>
                     @foreach ($parameters as $parameter)
@@ -16,7 +16,7 @@
                         </div>
                     @endforeach
                 </div>
-                <button type='submit' class='btn btn-primary'>SEARCH</button>
+                <button type='submit' class='btn btn-primary text-uppercase'>{{__('main.to_search')}}</button>
             </form>
         </div>
     </div>

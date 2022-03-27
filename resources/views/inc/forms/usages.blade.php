@@ -5,6 +5,6 @@
         @endforeach
     </select>
     <div class='mt-4'>
-        <button type='submit' class='btn btn-primary'>{{$buttonText}}</button>
+        <button type='submit' class='btn btn-primary text-uppercase'>{{$buttonText}}</button>
     </div>
 </form>

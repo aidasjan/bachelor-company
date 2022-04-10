@@ -11,10 +11,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-uppercase text_white" href="{{config('custom.gateway_url')}}">GATEWAY</a>
+                        <a class="nav-link text-uppercase text_white" href="{{route('index')}}">{{ __('main.home') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-uppercase text_white" href="{{route('index')}}">{{ __('main.home') }}</a>
+                        <a class="nav-link text-uppercase text_white" href="{{config('custom.gateway_url')}}">GATEWAY</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-uppercase text_white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -34,6 +34,10 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
+                        <li class="nav-item">
+                            <a class="nav-link text-uppercase text_white" href="{{config('custom.gateway_url')}}/login">{{__('main.login')}}</a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-uppercase text_white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ App::getLocale() }} <span class="caret"></span>

@@ -9,6 +9,7 @@ use App\Models\OrderProduct;
 use App\Models\Parameter;
 use App\Models\Product;
 use App\Models\ProductParameter;
+use App\Models\RelatedProduct;
 use App\Models\Usage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -125,5 +126,38 @@ class ProductsTest extends TestCase
 
         $response->assertStatus(302);
         $this->assertDatabaseCount('products', 0);
+    }
+
+    public function test_related_products_are_updated()
+    {
+        Category::factory()->create();
+        Product::factory()->count(5)->create(['category_id' => 1]);
+        RelatedProduct::factory()->create(['product_id' => 1, 'related_product_id' => 2]);
+        $payload = [
+            'product' => '1',
+            '3' => 'selected',
+            '5' => 'selected',
+        ];
+
+        $response = $this->actingAs(TestUtils::setupAdmin())->post('/related-products', $payload);
+
+        $response->assertStatus(302);
+        $this->assertDatabaseCount('related_products', 2);
+        $this->assertDatabaseHas('related_products', ['product_id' => 1, 'related_product_id' => 3]);
+        $this->assertDatabaseHas('related_products', ['product_id' => 1, 'related_product_id' => 5]);
+    }
+
+    public function test_related_products_are_displayed_in_edit()
+    {
+        Category::factory()->create();
+        Product::factory()->count(5)->create(['category_id' => 1]);
+        RelatedProduct::factory()->create(['product_id' => 1, 'related_product_id' => 2]);
+
+        $response = $this->actingAs(TestUtils::setupAdmin())->get('/related-products/1/edit');
+
+        $response->assertStatus(200);
+        $data = $response->getOriginalContent()->getData();
+        $this->assertCount(5, $data['products']);
+        $this->assertCount(1, $data['relatedProducts']);
     }
 }

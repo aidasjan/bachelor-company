@@ -6,7 +6,7 @@
 
     <div class='row py-5'>
         <div class='col'>
-            <h1 class='text-uppercase'>RELATED PRODUCTS - {{$original_product->name}}</h1>
+            <h1 class='text-uppercase'>RELATED PRODUCTS - {{$product->name}}</h1>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
                     @endforeach
                     <td></td><td></td><td></td><td></td><td></td>
                     <td class='text-center'>
-                        <input type='hidden' name='orig_product' value='{{$original_product->id}}'>
+                        <input type='hidden' name='product' value='{{$product->id}}'>
                         {{csrf_field()}}
                         <button type='submit' class='btn btn-primary'>SAVE</button>
                     </td>

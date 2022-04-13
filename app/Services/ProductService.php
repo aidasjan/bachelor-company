@@ -15,6 +15,11 @@ class ProductService
         $this->parameterService = $parameterService;
     }
 
+    public function all()
+    {
+        return Product::all();
+    }
+
     public function find($id)
     {
         return Product::find($id);
@@ -101,6 +106,32 @@ class ProductService
         $redirectUrl = $product->category->getDisplayUrl();
         $product->safeDelete();
         return $redirectUrl;
+    }
+
+    public function storeRelatedProducts(Request $request)
+    {
+        $product = Product::find($request->input('product'));
+        if ($product === null) return null;
+
+        RelatedProduct::where('product_id', $product->id)->delete();
+
+        $allProducts = Product::all();
+        $inputs = $request->all();
+        foreach ($allProducts as $prod) {
+            if (array_key_exists($prod->id, $inputs)) {
+                $relatedProduct = new RelatedProduct;
+                $relatedProduct->product_id = $product->id;
+                $relatedProduct->related_product_id = $prod->id;
+                $relatedProduct->save();
+            }
+        }
+
+        return $product;
+    }
+
+    public function getRelatedProducts($productId)
+    {
+        return RelatedProduct::where('product_id', $productId)->get();
     }
 
     private function prepareProductList($products)

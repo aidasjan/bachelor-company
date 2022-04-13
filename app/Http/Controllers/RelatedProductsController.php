@@ -3,69 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\RelatedProduct;
+use App\Services\ProductService;
 
 class RelatedProductsController extends Controller
 {
-    public function __construct()
+    public function __construct(ProductService $productService)
     {
         $this->middleware('auth');
+        $this->productService = $productService;
     }
 
     public function store(Request $request)
     {
-        if (auth()->user()->isAdmin()){
-
-            $this->validate($request,[
-                'orig_product'=>'required'
-            ]);
-
-            // Find product
-            $original_product = Product::find($request->input('orig_product'));
-            if ($original_product === null) abort(404);
-
-            // Delete all stored values for specified product
-            $relatedProducts = RelatedProduct::where('product_id', $original_product->id)->get();
-            foreach ($relatedProducts as $related_product){
-                $related_product->delete();
-            }
-
-            // Add related products to specified product
-            $all_products = Product::all();
-            $inputs = $request->all();
-            foreach ($all_products as $product){
-                if (array_key_exists($product->id, $inputs)){
-                    $related_product = new RelatedProduct;
-                    $related_product->product_id = $original_product->id;
-                    $related_product->related_product_id = $product->id;
-                    $related_product->save();
-                }
-            }
-
-            return redirect('/products'.'/'.$original_product->id);
-
-        }
-        else abort(404);
+        if (auth()->user()->isAdmin()) {
+            $this->validateStoreRequest($request);
+            $product = $this->productService->storeRelatedProducts($request);
+            if ($product === null) abort(400);
+            return redirect('/products' . '/' . $product->id);
+        } else abort(404);
     }
 
-    public function edit($productID)
+    private function validateStoreRequest(Request $request)
     {
-        if (auth()->user()->isAdmin()){
-            $product = Product::find($productID);
+        $this->validate($request, [
+            'product' => 'required|numeric'
+        ]);
+    }
+
+    public function edit($productId)
+    {
+        if (auth()->user()->isAdmin()) {
+            $product = $this->productService->find($productId);
             if ($product === null) abort(404);
 
-            $all_products = Product::all();
-            $relatedProducts = RelatedProduct::where('product_id', $product->id)->get();
+            $allProducts = $this->productService->all();
+            $relatedProducts = $this->productService->getRelatedProducts($product->id);
 
             $data = array(
-                'original_product'=>$product,
-                'products'=>$all_products,
-                'relatedProducts'=>$relatedProducts
+                'product' => $product,
+                'products' => $allProducts,
+                'relatedProducts' => $relatedProducts
             );
 
             return view('pages.related_products.edit')->with($data);
-        }
-        else abort(404);
+        } else abort(404);
     }
 }

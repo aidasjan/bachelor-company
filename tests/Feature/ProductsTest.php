@@ -55,7 +55,7 @@ class ProductsTest extends TestCase
         $this->assertDatabaseHas('products', ['name' => 'New Product']);
     }
 
-    public function test_show_displays_product_details_and_quantity_for_client()
+    public function test_product_details_and_quantity_is_displayed_for_client()
     {
         $client = TestUtils::setupClient();
         Category::factory()->create();
@@ -96,7 +96,7 @@ class ProductsTest extends TestCase
         $this->assertEquals(null, $data['parameters'][2]->productValue);
     }
 
-    public function test_updates_parameters()
+    public function test_parameters_are_updated()
     {
         Category::factory()->create();
         Product::factory()->create(['id' => 1, 'category_id' => 1]);
@@ -114,5 +114,16 @@ class ProductsTest extends TestCase
         $this->assertDatabaseCount('product_parameters', 2);
         $this->assertDatabaseHas('product_parameters', ['product_id' => 1, 'usage_id' => 1, 'parameter_id' => 1, 'value' => 10]);
         $this->assertDatabaseHas('product_parameters', ['product_id' => 1, 'usage_id' => 1, 'parameter_id' => 2, 'value' => 20]);
+    }
+
+    public function test_product_is_destroyed()
+    {
+        $category = Category::factory()->create();
+        Product::factory()->create(['id' => 1, 'category_id' => $category->id]);
+
+        $response = $this->actingAs(TestUtils::setupAdmin())->delete('/products/1');
+
+        $response->assertStatus(302);
+        $this->assertDatabaseCount('products', 0);
     }
 }

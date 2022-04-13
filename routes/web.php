@@ -90,7 +90,7 @@ Route::get('orders/{order}', 'App\Http\Controllers\OrdersController@show')->name
 Route::put('orders/{order}', 'App\Http\Controllers\OrdersController@update')->name('orders.update');
 Route::delete('orders/{order}', 'App\Http\Controllers\OrdersController@destroy')->name('orders.destroy');
 Route::get('orders/{order}/edit', 'App\Http\Controllers\OrdersController@edit')->name('orders.edit');
-Route::post('orders/destroy_unsubmitted', 'App\Http\Controllers\OrdersController@destroyUnsubmitted')->name('orders.destroy_unsubmitted');
+Route::post('orders/destroyunsubmitted', 'App\Http\Controllers\OrdersController@destroyUnsubmitted')->name('orders.destroy_unsubmitted');
 
 // Discounts
 Route::get('discounts', 'App\Http\Controllers\DiscountsController@index')->name('discounts.index');

@@ -107,8 +107,8 @@ class OrderService
         );
 
         foreach ($data['orderProducts'] as $orderProduct) {
-            if (($order->status == 0 && $orderProduct->getProduct() == null) || $orderProduct->getTotalPrice($user) == null) {
-                abort(404);
+            if (($order->status == 0 && $orderProduct->getProduct() == null) || $orderProduct->getTotalPrice($user) === null) {
+                return null;
             }
             $orderProduct->discount = $orderProduct->getDiscount($user);
             $orderProduct->price_discount = $orderProduct->getPriceWithDiscount($user);

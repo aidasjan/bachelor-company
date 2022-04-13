@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
+    use HasFactory;
+
     protected $table = 'orders';
     public $primaryKey = 'id';
     public $timeStamps = true;
@@ -61,12 +63,6 @@ class Order extends Model
                     return 'undefined';
             }
         }
-    }
-
-    public function getClient()
-    {
-        $user = $this->user;
-        if ($user->isClient()) return $user;
     }
 
     public function attachQuantities($products)

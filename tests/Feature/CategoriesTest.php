@@ -60,7 +60,7 @@ class CategoriesTest extends TestCase
         $this->assertDatabaseHas('categories', ['name' => 'New Category']);
     }
 
-    public function test_category_is_deleted()
+    public function test_category_is_destroyed()
     {
         $admin = TestUtils::setupAdmin();
         Category::factory()->create();
@@ -69,6 +69,18 @@ class CategoriesTest extends TestCase
 
         $response->assertStatus(302);
         $this->assertDatabaseCount('categories', 0);
+    }
+
+    public function test_category_edit_has_category_data()
+    {
+        $admin = TestUtils::setupAdmin();
+        $category = Category::factory()->create();
+
+        $response = $this->actingAs($admin)->get('/categories/1/edit');
+
+        $response->assertStatus(200);
+        $data = $response->getOriginalContent()->getData();
+        $this->assertEquals($category->name, $data['category']->name);
     }
 
     public function test_category_without_products_shows_subcategories()

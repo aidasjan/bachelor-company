@@ -32,7 +32,7 @@ class OrdersController extends Controller
             $orders = $this->orderService->getUserOrdersByStatus($status, null);
             return view('pages.orders.index')->with('orders', $orders);
         } else if (auth()->user()->isAdmin()) {
-            $orders = $this->orderService->getOrdersByStatus();
+            $orders = $this->orderService->getOrdersByStatus($status);
             return view('pages.orders.index')->with('orders', $orders);
         } else abort(404);
     }
@@ -66,6 +66,7 @@ class OrdersController extends Controller
 
         if ((auth()->user()->isClient() && $order->user_id === auth()->user()->id) || auth()->user()->isAdmin()) {
             $data = $this->orderService->getOrderDetails($order);
+            if ($data === null) abort(400);
             return view('pages.orders.show')->with($data);
         } else abort(404);
     }

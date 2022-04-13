@@ -75,17 +75,17 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === 'admin' && $this->company->id == config('custom.company_info.id');
+        return $this->role === 'admin' && $this->company && $this->company->id == config('custom.company_info.id') && !$this->isNew;
     }
 
     public function isClient()
     {
-        return $this->role === 'client' && $this->is_new == 0;
+        return $this->role === 'client' && !$this->is_new;
     }
 
     public function isNewClient()
     {
-        return $this->role === 'client' && $this->is_new == 1;
+        return $this->role === 'client' && $this->is_new;
     }
 
     public function getAllDiscounts()

@@ -3,7 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\Category;
+use App\Models\Discount;
 use App\Models\File;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -105,6 +108,27 @@ class CategoriesTest extends TestCase
         $response->assertStatus(200);
         $data = $response->getOriginalContent()->getData();
         $this->assertCount(1, $data['products']);
+    }
+
+    public function test_category_with_products_shows_products_with_discounts_and_quantities_for_client()
+    {
+        $client = TestUtils::setupClient();
+        Category::factory()->create(['id' => 1, 'code' => 'test']);
+        Product::factory()->create(['category_id' => 1, 'price' => 100]);
+        Discount::factory()->create(['category_id' => 1, 'user_id' => 2, 'discount' => 10]);
+        Order::factory()->create(['user_id' => $client->id, 'status' => 0]);
+        OrderProduct::factory()->create(['product_id' => 1, 'quantity' => 15]);
+
+        $response = $this->actingAs($client)
+            ->session(['current_order' => 1])
+            ->get('/categories/test');
+
+        $response->assertStatus(200);
+        $data = $response->getOriginalContent()->getData();
+        $this->assertCount(1, $data['products']);
+        $this->assertEquals(90, $data['products'][0]->price);
+        $this->assertEquals(15, $data['products'][0]->quantity);
+        $this->assertEquals(10, $data['discount']);
     }
 
     public function test_category_image_stored()

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductParameter extends Model
 {
+    use HasFactory;
+
     protected $table = 'product_parameters';
     public $primaryKey = 'id';
     public $timeStamps = true;

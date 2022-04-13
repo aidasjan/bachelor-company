@@ -80,10 +80,9 @@ class CategoriesController extends Controller
                 'headline' => $category->name
             );
 
-            if (auth()->user() && auth()->user()->isClient()){
+            if (auth()->user() && auth()->user()->isClient()) {
                 $data['discount'] = auth()->user()->getDiscount($category);
-            }
-            else {
+            } else {
                 $data['discount'] = $category->discount;
             }
 
@@ -93,7 +92,8 @@ class CategoriesController extends Controller
             $data = array(
                 'pageName' => $category->name,
                 'childCategories' => $category->childCategories->sortBy('position'),
-                'category' => $category
+                'category' => $category,
+                'headline' => $category->name
             );
             return view('pages.categories.show')->with($data);
         }
@@ -141,9 +141,7 @@ class CategoriesController extends Controller
     {
         if (auth()->user()->isAdmin()) {
             $category = Category::find($id);
-            if ($category === null) {
-                abort(404);
-            }
+            if ($category === null) abort(404);
             return view('pages.categories.file_upload')->with('category', $category);
         } else abort(404);
     }

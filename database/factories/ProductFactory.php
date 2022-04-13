@@ -1,18 +1,21 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Models\Product;
-use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Product::class, function (Faker $faker) {
-    return [
-        'code' => Str::random(6),
-        'name' => Str::random(10),
-        'price' => random_int(0, 100),
-        'currency' => 'EUR',
-        'unit' => 'unit',
-        'category_id' => 1
-    ];
-});
+class ProductFactory extends Factory
+{
+    public function definition()
+    {
+        return [
+            'code' => Str::random(6),
+            'name' => Str::random(10),
+            'price' => random_int(0, 100),
+            'currency' => 'EUR',
+            'unit' => 'unit',
+            'category_id' => 1
+        ];
+    }
+}

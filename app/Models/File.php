@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Services\FileService;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class File extends Model
 {
+    use HasFactory;
+
     protected $table = 'files';
     public $primaryKey = 'id';
     public $timeStamps = true;
@@ -20,8 +23,8 @@ class File extends Model
     }
 
     public function isImage() {
-        $image_mime_types = collect(['image/jpg', 'image/jpeg', 'image/png']);
-        return $image_mime_types->contains($this->file_mime_type);
+        $imageMimeTypes = collect(['image/jpg', 'image/jpeg', 'image/png']);
+        return $imageMimeTypes->contains($this->file_mime_type);
     }
 
     public function isProductFile() {

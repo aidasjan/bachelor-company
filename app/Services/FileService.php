@@ -7,14 +7,14 @@ use App\Models\File;
 
 class FileService
 {
-    public function getValidatedFilePath($file_id, $disk = 'public') {
-        $file = File::find($file_id);
+    public function getValidatedFilePath($fileId, $disk = 'public') {
+        $file = File::find($fileId);
         if ($file == null) {
             return null;
         }
-        $file_path = $this->getFilePathInDisk($file);
-        if (Storage::disk($disk)->exists($file_path)) {
-            return Storage::disk($disk)->path($file_path);
+        $filePath = $this->getFilePathInDisk($file);
+        if (Storage::disk($disk)->exists($filePath)) {
+            return Storage::disk($disk)->path($filePath);
         } else {
             return null;
         }
@@ -30,17 +30,17 @@ class FileService
     }
 
     public function uploadFile($file, $type, $name = null, $disk = 'public') {
-        $file_record = new File;
-        $file_record->name = $name ?? $file->getClientOriginalName();
-        $file_record->type = $type;
-        $file_record->file_name = $this->generateRandomFileName();
-        $file_record->file_extension = $file->extension();
-        $file_record->file_mime_type = $file->getMimeType();
-        $file_record->save();
+        $fileRecord = new File;
+        $fileRecord->name = $name ?? $file->getClientOriginalName();
+        $fileRecord->type = $type;
+        $fileRecord->file_name = $this->generateRandomFileName();
+        $fileRecord->file_extension = $file->extension();
+        $fileRecord->file_mime_type = $file->getMimeType();
+        $fileRecord->save();
 
-        $file->storeAs('uploads', $this->getFileFullName($file_record), $disk);
+        $file->storeAs('uploads', $this->getFileFullName($fileRecord), $disk);
 
-        return $file_record;
+        return $fileRecord;
     }
 
     private function getFilePathInDisk($file)
@@ -55,12 +55,12 @@ class FileService
 
     private function generateRandomFileName()
     {
-        $rand_file_name_length = 64;
-        $rand_file_name = "";
-        for ($i = 0; $i < $rand_file_name_length; $i++) {
-            $rand_file_name .= strval(random_int(0, 9));
+        $randFileNameLength = 64;
+        $randFileName = "";
+        for ($i = 0; $i < $randFileNameLength; $i++) {
+            $randFileName .= strval(random_int(0, 9));
         }
-        $rand_file_name .= strval(time());
-        return $rand_file_name;
+        $randFileName .= strval(time());
+        return $randFileName;
     }
 }

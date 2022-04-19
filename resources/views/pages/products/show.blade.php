@@ -186,7 +186,16 @@
         <div class='row'>
             <div class='col-md'>
                 @if (!Auth::guest() && Auth::user()->isAdmin())
-                    <div class='mt-3'><a href="{{url('/products'.'/'.$product->id.'/edit')}}" class='link_main'>EDIT THIS PRODUCT</a></div>
+                    <div class='mt-5'><a href="{{url('/products'.'/'.$product->id.'/edit')}}" class='link_main'>EDIT THIS PRODUCT</a></div>
+                    <div class='mt-3'>
+                        @include('inc.forms.delete_button', [
+                            'action' => 'App\Http\Controllers\ProductsController@destroy',
+                            'action_param' => $product->id,
+                            'button_text' => 'DELETE THIS PRODUCT',
+                            'message' => 'This product will be removed from all orders. Files of this product will be deleted as well.',
+                            'modal_header' => 'Do you want to delete this product?',
+                            'modal_message' => 'This product will be removed from all orders. Files of this product will be deleted as well.'])
+                    </div>
                 @endif
             </div>
         </div>

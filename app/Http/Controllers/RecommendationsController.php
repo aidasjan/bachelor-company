@@ -19,7 +19,7 @@ class RecommendationsController extends Controller
 
     public function showParameters(Request $request)
     {
-        $this->validateShowFilterRequest($request);
+        $this->validateShowParametersRequest($request);
         $usage = $this->usageService->find($request->input('usage'));
         if ($usage === null) {
             abort(404);
@@ -42,7 +42,7 @@ class RecommendationsController extends Controller
         return view('pages.products.index')->with($data);
     }
 
-    private function validateShowFilterRequest($request)
+    private function validateShowParametersRequest($request)
     {
         $this->validate($request, [
             'usage' => 'required|numeric',

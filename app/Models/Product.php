@@ -24,7 +24,7 @@ class Product extends Model
         return $this->belongsToMany('App\Models\File', 'product_files');
     }
 
-    public function related_products()
+    public function relatedProducts()
     {
         return $this->hasMany('App\Models\RelatedProduct', 'product_id');
     }
@@ -70,14 +70,9 @@ class Product extends Model
         foreach ($files as $file) {
             $file->safeDelete();
         }
-        $orderProducts = $this->orderProducts;
-        foreach ($orderProducts as $orderProduct) {
-            $orderProduct->delete();
-        }
-        $relatedProducts = RelatedProduct::where('product_id', $this->id)->orWhere('related_product_id', $this->id)->get();
-        foreach ($relatedProducts as $relatedProduct) {
-            $relatedProduct->delete();
-        }
+        $this->orderProducts()->delete();
+        RelatedProduct::where('product_id', $this->id)->orWhere('related_product_id', $this->id)->delete();
+        $this->parameters()->delete();
         $this->delete();
     }
 }

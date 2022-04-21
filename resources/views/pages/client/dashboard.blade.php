@@ -18,7 +18,6 @@
                     {{csrf_field()}}
                     <button type='submit' class='btn btn-primary mt-4 mb-3 text-uppercase' href='#'>{{ __('main.new_order') }}</button>
                 </form>
-                <a href="{{url('/tutorial')}}" target='_blank' class='link_main'>{{ __('main.how_to_do') }}</a>
             </div>
         </div>
 
@@ -115,7 +114,7 @@
                                 @if (count($discounts) > 0)
                                 <table class='table table_main'>
                                     <?php $counter = 1 ?>
-                                    <tr><th></th><th>{{ __('main.product_group') }}</th><th>{{ __('main.discount') }}</th></tr>
+                                    <tr><th></th><th>{{ __('main.category') }}</th><th>{{ __('main.discount') }}</th></tr>
                                     @foreach ($discounts as $discount)
                                         <tr>
                                             <td>{{$counter++}}.</td>

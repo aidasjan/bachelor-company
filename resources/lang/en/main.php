@@ -109,20 +109,6 @@ return [
     'search_product' => 'Product Search',
     'search_results' => 'Search Results',
 
-    'how_to_do' => 'How to do this?',
-    'how_to_make_order' => 'How to make an order',
-    'tutorial_1_1' => 'Start making order in your dashboard.',
-    'tutorial_1_2' => 'After you click this button, you will be redirected to our catalog.',
-    'tutorial_2_1' => 'Select category and product group or search for product using search bar.',
-    'tutorial_2_2' => 'The list of products will be shown after you perform these actions.',
-    'tutorial_3_1' => 'Enter quantities of the desired products in the table and click the button at the bottom of table to save selections.',
-    'tutorial_3_2' => 'You can also select desired products and other recommended products by clicking on product name and performing same actions in the table inside.',
-    'tutorial_3_3' => 'Now you will be redirected to our catalog again. Select other products you desire in the same way.',
-    'tutorial_4_1' => 'To view your order, click the button at the top bar.',
-    'tutorial_4_2' => 'List of products you have selected will be shown.',
-    'tutorial_5_1' => 'Submit your order!',
-    'tutorial_5_2' => 'You will receive an email with your order details in few seconds. We will contact you as soon as we review your order.',
-
     'looking_for_lower_prices' => 'Looking for lower prices?',
     'get_your_personal_account' => 'Contact us via :email and ask for your personal WMP account login to obtain personal discounts and make orders',
 

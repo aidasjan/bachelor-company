@@ -72,7 +72,6 @@ Route::post('related-products', 'App\Http\Controllers\RelatedProductsController@
 
 // Users
 Route::get('users', 'App\Http\Controllers\UsersController@index')->name('users.index');
-Route::get('tutorial', 'App\Http\Controllers\UsersController@showTutorial')->name('users.tutorial');
 Route::get('register', 'App\Http\Controllers\UsersController@create')->name('users.create');
 Route::post('register', 'App\Http\Controllers\UsersController@store')->name('users.store');
 

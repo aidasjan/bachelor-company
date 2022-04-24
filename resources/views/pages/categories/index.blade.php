@@ -55,7 +55,7 @@
             <div class='col-md-6 offset-md-3'>
                 <div class='text-uppercase mb-4'><h2>{{__('main.get_recommendations')}}</h2></div>
                 <div class='mb-4'>{{__('main.what_scope_problem')}}</div>
-                @include('inc.forms.usages', ['action' => action('App\Http\Controllers\RecommendationsController@showParameters'), 'buttonText' => __('main.see_options')])
+                @include('inc.forms.usages', ['action' => action('App\Http\Controllers\RecommendationsController@showParameters'), 'buttonText' => __('main.continue')])
             </div>
         </div>
     </div>
@@ -77,12 +77,6 @@
             </div>
         </div>
     @endif
-
-    <div class='row py-3'>
-        <div class='col'>
-            @include('inc.ui.personal_account_banner')
-        </div>
-    </div>
 
 </div>
 @endsection

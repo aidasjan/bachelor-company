@@ -114,7 +114,7 @@ return [
 
     'get_recommendations' => 'Get Recommendations',
     'what_scope_problem' => 'What is the scope of your problem?',
-    'see_options' => 'See Options',
+    'continue' => 'Continue',
     'parameters' => 'Parameters',
     'set_additional_parameters' => 'Set additional parameters to suit your needs. You can leave some of the fields blank.',
 ];

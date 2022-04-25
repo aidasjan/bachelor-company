@@ -185,6 +185,17 @@ h1 {
   text-decoration: none;
 }
 
+.link_green {
+  color: #2ea300;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.link_green:hover {
+  color: #258300;
+  text-decoration: none;
+}
+
 .link_grey {
   color: #aaa;
   font-weight: bold;

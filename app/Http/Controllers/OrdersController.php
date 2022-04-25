@@ -89,9 +89,12 @@ class OrdersController extends Controller
 
     public function update($id)
     {
-        if (auth()->user()->isClient()) {
+        if (auth()->user()->isClient() || auth()->user()->isAdmin()) {
             $order = $this->orderService->submit($id);
-            return redirect('/dashboard')->with('success', __('main.order_confirmation', ['order' => $order->id, 'email' => auth()->user()->email]));
+            if ($order->status === 1) {
+                return redirect('/dashboard')->with('success', __('main.order_confirmation', ['order' => $order->id, 'email' => auth()->user()->email]));
+            }
+            return redirect('/dashboard');
         } else abort(404);
     }
 

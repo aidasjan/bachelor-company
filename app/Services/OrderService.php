@@ -23,6 +23,11 @@ class OrderService
         return Order::where('user_id', auth()->user()->id)->where('status', $status)->orderBy('updated_at', 'desc')->take($count)->get();
     }
 
+    public function getUserConfirmedOrders($count)
+    {
+        return $this->getUserOrdersByStatus('2', $count);
+    }
+
     public function getUserSubmittedOrders($count)
     {
         return $this->getUserOrdersByStatus('1', $count);
@@ -31,6 +36,11 @@ class OrderService
     public function getUserUnubmittedOrders($count)
     {
         return $this->getUserOrdersByStatus('0', $count);
+    }
+
+    public function getConfirmedOrders($count)
+    {
+        return Order::where('status', '2')->orderBy('updated_at', 'desc')->take($count)->get();
     }
 
     public function getSubmittedOrders($count)
@@ -124,11 +134,11 @@ class OrderService
     public function submit($id)
     {
         $order = Order::find($id);
-        if ($order === null || $order->user_id !== auth()->user()->id) {
+        if ($order === null) {
             return null;
         }
 
-        if ($order->status == 0) {
+        if ($order->status == 0 && $order->user_id === auth()->user()->id) {
             foreach ($order->orderProducts as $orderProduct) {
                 $product = $orderProduct->getProduct();
                 if ($product === null) {
@@ -148,9 +158,17 @@ class OrderService
             $order->save();
             session()->forget('current_order');
             $this->sendOrderEmails($order, auth()->user());
+
+            return $order;
         }
 
-        return $order;
+        if ($order->status == 1 && auth()->user()->isAdmin()) {
+            $order->status = 2;
+            $order->save();
+            return $order;
+        }
+
+        return null;
     }
 
     private function sendOrderEmails($order, $user)

@@ -44,6 +44,41 @@
         </div>
     </div>
 
+    <div class='row py-3'>
+        <div class='col py-4 mx-3 dashboard_box container_lightblue'>
+            <div class='row'>
+                <div class='col text-left'>
+                    <h3>Confirmed Orders</h3>
+                    <span>Orders that have been recently confirmed</span>
+                </div>
+                <div class='col text-right'>
+                    <a class='btn btn-primary' href="{{url('/orders/status/2')}}">VIEW ALL</a>
+                </div>
+            </div>
+
+            <div class='row py-3'>
+                <div class='col'>
+                    @if (count($confirmedOrders) > 0)
+                    <table class='table table_main'>
+                        <?php $counter = 1 ?>
+                        <tr><th></th><th>ORDER</th><th>CLIENT</th><th>DATE</th></tr>
+                        @foreach ($confirmedOrders as $order)
+                            <tr>
+                                <td>{{$counter++}}.</td>
+                                <td><a href="{{url('/orders'.'/'.$order->id)}}">ORDER {{$order->id}}</td>
+                                <td>{{$order->user->name}}</td>
+                                <td>{{$order->updated_at}}</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                    @else
+                    <h5>No orders</h5>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class='row'>
         <div class='col-md py-4 mx-3 my-3 dashboard_box container_lightblue'>
             <h3>Add New Client</h3>

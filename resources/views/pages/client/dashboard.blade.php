@@ -29,8 +29,8 @@
                     <div class='col py-2 dashboard_box container_lightblue'>
                         <div class='row'>
                             <div class='col text-left py-3'>
-                                <h3>{{ __('main.unsubmittedOrders') }}</h3>
-                                <span>{{ __('main.unsubmittedOrders_desc') }}</span>
+                                <h3>{{ __('main.unsubmitted_orders') }}</h3>
+                                <span>{{ __('main.unsubmitted_orders_desc') }}</span>
                             </div>
                             <div class='col text-right py-3'>
                                 <a class='btn btn-primary text-uppercase' href="{{url('/orders/status/0')}}">{{ __('main.view_all') }}</a>
@@ -63,8 +63,8 @@
                     <div class='col py-2 dashboard_box container_lightblue'>
                         <div class='row'>
                             <div class='col text-left py-3'>
-                                <h3>{{ __('main.submittedOrders') }}</h3>
-                                <span>{{ __('main.submittedOrders_desc') }}</span>
+                                <h3>{{ __('main.submitted_orders') }}</h3>
+                                <span>{{ __('main.submitted_orders_desc') }}</span>
                             </div>
                             <div class='col text-right py-3'>
                                 <a class='btn btn-primary text-uppercase' href="{{url('/orders/status/1')}}">{{ __('main.view_all') }}</a>
@@ -96,6 +96,40 @@
             </div>
 
             <div class='col-md mx-3'>
+
+                <div class='row py-4'>
+                    <div class='col py-2 dashboard_box container_lightblue'>
+                        <div class='row'>
+                            <div class='col text-left py-3'>
+                                <h3>{{ __('main.confirmed_orders') }}</h3>
+                                <span>{{ __('main.confirmed_orders_desc') }}</span>
+                            </div>
+                            <div class='col text-right py-3'>
+                                <a class='btn btn-primary text-uppercase' href="{{url('/orders/status/2')}}">{{ __('main.view_all') }}</a>
+                            </div>
+                        </div>
+
+                        <div class='row py-3'>
+                            <div class='col'>
+                                @if (count($confirmedOrders) > 0)
+                                <table class='table table_main'>
+                                    <?php $counter = 1 ?>
+                                    <tr><th></th><th>{{ __('main.order') }}</th><th>{{ __('main.date') }}</th></tr>
+                                    @foreach ($confirmedOrders as $order)
+                                        <tr>
+                                            <td>{{$counter++}}.</td>
+                                            <td><a href="{{url('/orders'.'/'.$order->id)}}" class='text-uppercase'>{{ __('main.order') }} {{$order->id}}</td>
+                                            <td>{{$order->updated_at}}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                                @else
+                                <h5>{{ __('main.no_orders') }}</h5>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class='row py-4'>
                     <div class='col py-2 dashboard_box container_lightblue'>

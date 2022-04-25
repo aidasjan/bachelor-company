@@ -19,8 +19,8 @@ class DashboardController extends Controller
             $data = $this->dashboardService->getClientDashboardData();
             return view('pages.client.dashboard')->with($data);
         } else if (auth()->user()->isAdmin()) {
-            $submittedOrders = $this->dashboardService->getAdminDashboardData();
-            return view('pages.admin.dashboard')->with('submittedOrders', $submittedOrders);
+            $data = $this->dashboardService->getAdminDashboardData();
+            return view('pages.admin.dashboard')->with($data);
         } else abort(404);
     }
 }

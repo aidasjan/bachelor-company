@@ -59,9 +59,19 @@
         </div>
     @endif
 
-    @if ((!Auth::guest() && Auth::user()->isClient() && $order->status === 0) || (!Auth::guest() && Auth::user()->isAdmin()))
+    @if ((!Auth::guest() && Auth::user()->isAdmin() && $order->status === 1))
         <div class='my-3'>
             <form action='{{ action('App\Http\Controllers\OrdersController@update', $order->id)}}' method='POST'>
+                <input type='hidden' name='_method' value='PUT'>
+                {{csrf_field()}}
+                <button type='submit' class='btn btn-link link_green text-uppercase' href='#'>CONFIRM ORDER</button>
+            </form>
+        </div>
+    @endif
+
+    @if ((!Auth::guest() && Auth::user()->isClient() && $order->status === 0) || (!Auth::guest() && Auth::user()->isAdmin()))
+        <div class='my-3'>
+            <form action='{{ action('App\Http\Controllers\OrdersController@destroy', $order->id)}}' method='POST'>
                 <input type='hidden' name='_method' value='DELETE'>
                 {{csrf_field()}}
                 <button type='submit' class='btn btn-link link_red text-uppercase' href='#'>{{ __('main.discard_order') }}</button>

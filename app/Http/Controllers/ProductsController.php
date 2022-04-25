@@ -78,11 +78,13 @@ class ProductsController extends Controller
 
         [$product, $relatedProducts] = $result;
         $usages = $this->usageService->all();
+        $parameters = $this->parameterService->getParametersByProduct($product);
 
         $data = array(
             'pageName' => $product->name,
             'pageDescription' => $product->name,
             'product' => $product,
+            'parameters' => $parameters,
             'relatedProducts' => $relatedProducts,
             'documents' => $product->files->filter(function ($file) {
                 return !$file->isImage();

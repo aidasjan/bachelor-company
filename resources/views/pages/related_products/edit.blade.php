@@ -26,7 +26,7 @@
                             <td><input type="checkbox" name="{{$product->id}}" @if ($relatedProducts->contains('related_product_id', $product->id)) checked @endif></td>
                         </tr>
                     @endforeach
-                    <td></td><td></td><td></td><td></td><td></td>
+                    <td></td><td></td><td></td><td></td>
                     <td class='text-center'>
                         <input type='hidden' name='product' value='{{$product->id}}'>
                         {{csrf_field()}}

@@ -61,6 +61,19 @@
                         <div class='col-md text-uppercase'><h2>{{ __('main.product_info') }}</h2></div>
                     </div>
 
+                    @if (count($parameters) > 0)
+                        <div class='py-3'>
+                            @foreach ($parameters as $usage => $productParameters)
+                                <table class='table table-responsive-md table_main mb-3'>
+                                    <tr><th>{{$usage}}</th><th></th></tr>
+                                    @foreach ($productParameters as $productParameter)
+                                        <tr><td>{{$productParameter['parameter']}}</td><td>{{$productParameter['value']}}</td></tr>
+                                    @endforeach
+                                </table>
+                            @endforeach
+                        </div>
+                    @endif
+
                     @if (count($documents) > 0)
                         <?php $counter=0; ?>
                         @foreach ($documents as $file)
@@ -87,12 +100,6 @@
                             <?php $counter++; ?>
                         @endforeach
                         @if ($counter % 2 != 0) </div> @endif
-                    @else
-                        <div class='row pt-3'>
-                            <div class='col-md'>
-                                <h5>{{ __('main.product_no_info') }}</h5>
-                            </div>
-                        </div>
                     @endif
                     
                     <div class='row py-3'>

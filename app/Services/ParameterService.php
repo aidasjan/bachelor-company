@@ -32,7 +32,8 @@ class ParameterService
         return $parameters;
     }
 
-    public function updateProductParameters(Request $request, $product, $usage) {
+    public function updateProductParameters(Request $request, $product, $usage)
+    {
         $inputs = $request->all();
         $this->getParametersByProductAndUsageQuery($product->id, $usage->id)->delete();
         foreach ($inputs as $key => $value) {
@@ -48,7 +49,8 @@ class ParameterService
         }
     }
 
-    public function getProductsByParametersAndUsage($parameters, $usage) {
+    public function getProductsByParametersAndUsage($parameters, $usage)
+    {
         $productIds = ProductParameter::where('usage_id', $usage->id)->pluck('product_id')->unique();
         foreach ($parameters as $key => $value) {
             if (!is_numeric($key) || !is_numeric($value)) {
@@ -62,12 +64,31 @@ class ParameterService
         return Product::whereIn('id', $productIds)->get();
     }
 
-    public function getParametersByUsage($usage) {
+    public function getParametersByUsage($usage)
+    {
         $parameterIds = ProductParameter::where('usage_id', $usage->id)->pluck('parameter_id')->unique();
         return Parameter::whereIn('id', $parameterIds)->get();
     }
 
-    private function getParametersByProductAndUsageQuery($productId, $usageId) {
+    public function getParametersByProduct($product)
+    {
+        return $product->parameters()
+            ->with('parameter')
+            ->with('usage')
+            ->get()
+            ->groupBy('usage.name')
+            ->map(function ($usage) {
+                return $usage->map(function ($productParameter) {
+                    return [
+                        'value' => $productParameter->value,
+                        'parameter' => $productParameter->parameter->name,
+                    ];
+                });
+            });
+    }
+
+    private function getParametersByProductAndUsageQuery($productId, $usageId)
+    {
         return ProductParameter::where('product_id', $productId)->where('usage_id', $usageId);
     }
 

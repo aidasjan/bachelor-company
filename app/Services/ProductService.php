@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 
 class ProductService
 {
-    public function __construct(SearchService $searchService, ParameterService $parameterService)
+    public function __construct(ParameterService $parameterService)
     {
-        $this->searchService = $searchService;
         $this->parameterService = $parameterService;
     }
 
@@ -27,7 +26,7 @@ class ProductService
 
     public function getProductsBySearch($query)
     {
-        $products = $this->searchService->searchProducts($query);
+        $products = $this->searchProducts($query);
         return $this->prepareProductList($products);
     }
 
@@ -70,6 +69,17 @@ class ProductService
         }
 
         return [$product, $relatedProducts];
+    }
+
+    public function searchProducts($query) 
+    {
+        $sanitized_query = preg_replace("/[^A-Za-z0-9 ]/", '', $query);
+        if (strlen($sanitized_query) == 0) {
+            return [];
+        }
+        $products = Product::whereRaw("MATCH (code, name, description) AGAINST (? IN BOOLEAN MODE)", $sanitized_query)
+            ->take(config('custom.search.results_limit'))->get();
+        return $products;
     }
 
     public function add(Request $request)

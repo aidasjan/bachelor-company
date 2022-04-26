@@ -13,38 +13,55 @@ class Category extends Model
 
     use HasFactory;
 
-    public function getNameAttribute($value) {
-        if (app()->getLocale() == 'ru'){
+    public function getNameAttribute($value)
+    {
+        if (app()->getLocale() == 'ru') {
             $value = $this->name_ru;
         }
         return $value;
     }
 
-    public function products() {
+    public function products()
+    {
         return $this->hasMany('App\Models\Product', 'category_id');
     }
 
-    public function parentCategory() {
+    public function discounts()
+    {
+        return $this->hasMany('App\Models\Discount', 'category_id');
+    }
+
+    public function parentCategory()
+    {
         return $this->belongsTo('App\Models\Category', 'parent_id');
     }
 
-    public function childCategories() {
+    public function childCategories()
+    {
         return $this->hasMany('App\Models\Category', 'parent_id');
     }
 
-    public function files() {
+    public function files()
+    {
         return $this->belongsToMany('App\Models\File', 'category_files');
     }
 
-    public function safeDelete() {
+    public function safeDelete()
+    {
+        $childCategories = $this->childCategories;
+        foreach ($childCategories as $childCategory) {
+            $childCategory->safeDelete();
+        }
         $products = $this->products;
         foreach ($products as $product) {
             $product->safeDelete();
         }
+        $this->discounts()->delete();
         $this->delete();
     }
 
-    public function getDisplayUrl() {
-        return '/categories'.'/'.$this->code;
+    public function getDisplayUrl()
+    {
+        return '/categories' . '/' . $this->code;
     }
 }

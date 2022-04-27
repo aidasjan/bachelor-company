@@ -3,38 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\File;
 use App\Services\FileService;
+use App\Services\ProductService;
 
 class ProductFilesController extends Controller
 {
-
-    public function __construct()
+    public function __construct(ProductService $productService, FileService $fileService)
     {
         $this->middleware('auth');
+        $this->productService = $productService;
+        $this->fileService = $fileService;
     }
 
-    public function create($product_id)
+    public function create($productId)
     {
-        if (auth()->user()->isAdmin()){
-            return view('pages.products.files.create')->with('product_id', $product_id);
-        }
-        else abort(404);
+        if (auth()->user()->isAdmin()) {
+            return view('pages.products.files.create')->with('productId', $productId);
+        } else abort(404);
     }
 
     public function store(Request $request)
     {
-        if (auth()->user()->isAdmin()){
+        if (auth()->user()->isAdmin()) {
             $this->validateStoreRequest($request);
-            $product = Product::find($request->input('product_id'));
-            if ($product == null) { abort(404); }
-            $file_service = new FileService;
-            $file = $file_service->uploadFile($request->file('product_file'), 'product_file', $request->input('name'), 'public');
-            $product->files()->attach($file->id);
-            return redirect('/products'.'/'.$product->id);
-        }
-        else abort(404);
+            $product = $this->productService->storeProductFile($request);
+            if ($product === null) {
+                abort(404);
+            }
+            return redirect('/products' . '/' . $product->id);
+        } else abort(404);
     }
 
     private function validateStoreRequest(Request $request)
@@ -46,55 +43,50 @@ class ProductFilesController extends Controller
             'product_file' => [
                 'required',
                 'file',
-                'mimes:'.$allowed_mimes,
-                'max:'.$max_file_size
+                'mimes:' . $allowed_mimes,
+                'max:' . $max_file_size
             ]
         ]);
     }
 
     public function edit($id)
     {
-        if (auth()->user()->isAdmin()){
-            $file = File::find($id);
+        if (auth()->user()->isAdmin()) {
+            $file = $this->fileService->find($id);
             if ($file == null || !$file->isProductFile()) {
-                abort(404); return;
+                abort(404);
             }
-            return view('pages.products.files.edit') -> with('product_file', $file);
-        }
-        else abort(404);
+            return view('pages.products.files.edit')->with('productFile', $file);
+        } else abort(404);
     }
 
     public function update(Request $request, $id)
     {
-        if (auth()->user()->isAdmin()){
+        if (auth()->user()->isAdmin()) {
             $this->validateUpdateRequest($request);
-            $file = File::find($id);
-            if ($file == null || !$file->isProductFile()) {
-                abort(404); return;
+            $file = $this->productService->updateProductFile($request, $id);
+            if ($file === null) {
+                abort(404);
             }
-            $file->name = $request->input('name');
-            $file->save();
-            return redirect('products/'.$file->products->first()->id);
-        }
-        else abort(404);
+            return redirect('products/' . $file->products->first()->id);
+        } else abort(404);
     }
 
     private function validateUpdateRequest(Request $request)
     {
         $request->validate([
-            'name'=>'required'
+            'name' => 'required'
         ]);
     }
 
     public function destroy($id)
     {
-        if (auth()->user()->isAdmin()){
-            $file = File::find($id);
-            if ($file == null || !$file->isProductFile()) { abort(404); }
-            $product_id = $file->products->first()->id;
-            $file->safeDelete();
-            return redirect('products/'.$product_id);
-        }
-        else abort(404);
+        if (auth()->user()->isAdmin()) {
+            $product = $this->productService->destroyFileById($id);
+            if ($product === null) {
+                abort(404);
+            }
+            return redirect('products/' . $product->id);
+        } else abort(404);
     }
 }

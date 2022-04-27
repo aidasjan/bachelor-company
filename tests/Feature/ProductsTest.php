@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\File;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Parameter;
@@ -12,6 +13,8 @@ use App\Models\ProductParameter;
 use App\Models\RelatedProduct;
 use App\Models\Usage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Tests\TestUtils;
 
@@ -159,5 +162,50 @@ class ProductsTest extends TestCase
         $data = $response->getOriginalContent()->getData();
         $this->assertCount(5, $data['products']);
         $this->assertCount(1, $data['relatedProducts']);
+    }
+
+    public function test_product_file_stored()
+    {
+        Category::factory()->create();
+        Product::factory()->create();
+        $file = UploadedFile::fake()->image('test.png');
+        $payload = ['product_id' => 1, 'product_file' => $file];
+
+        $response = $this->actingAs(TestUtils::setupAdmin())->post('/product-files', $payload);
+
+        $response->assertStatus(302);
+        $this->assertDatabaseCount('product_files', 1);
+        $databaseFile = File::first();
+        $this->assertEquals($databaseFile->name, 'test.png');
+        Storage::disk('public')->assertExists('uploads/' . $databaseFile->file_name . '.' . $databaseFile->file_extension);
+    }
+
+    public function test_product_file_name_is_updated()
+    {
+        Category::factory()->create();
+        $product = Product::factory()->create();
+        $file = File::factory()->create(['id' => 1]);
+        $product->files()->attach($file);
+        $payload = ['name' => 'Test Name'];
+
+        $response = $this->actingAs(TestUtils::setupAdmin())->put('/product-files/1', $payload);
+
+        $response->assertStatus(302);
+        $this->assertDatabaseCount('files', 1);
+        $this->assertDatabaseHas('files', ['name' => 'Test Name']);
+    }
+
+    public function test_product_file_edit_is_displayed()
+    {
+        Category::factory()->create();
+        $product = Product::factory()->create();
+        $file = File::factory()->create(['id' => 1, 'name' => 'TestName']);
+        $product->files()->attach($file);
+
+        $response = $this->actingAs(TestUtils::setupAdmin())->get('/product-files/1/edit');
+
+        $response->assertStatus(200);
+        $data = $response->getOriginalContent()->getData();
+        $this->assertEquals('TestName', $data['productFile']->name);
     }
 }

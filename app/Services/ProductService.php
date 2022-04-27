@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 
 class ProductService
 {
-    public function __construct(ParameterService $parameterService)
+    public function __construct(ParameterService $parameterService, FileService $fileService)
     {
         $this->parameterService = $parameterService;
+        $this->fileService = $fileService;
     }
 
     public function all()
@@ -142,6 +143,39 @@ class ProductService
     public function getRelatedProducts($productId)
     {
         return RelatedProduct::where('product_id', $productId)->get();
+    }
+
+    public function storeProductFile(Request $request)
+    {
+        $product = Product::find($request->input('product_id'));
+        if ($product == null) { 
+            return null; 
+        }
+        $file = $this->fileService->uploadFile($request->file('product_file'), 'product_file', $request->input('name'), 'public');
+        $product->files()->attach($file->id);
+        return $product;
+    }
+
+    public function destroyFileById($id)
+    {
+        $file = $this->fileService->find($id);
+        if ($file == null || !$file->isProductFile()) { 
+            return null; 
+        }
+        $product = $file->products->first();
+        $file->safeDelete();
+        return $product;
+    }
+
+    public function updateProductFile(Request $request, $id)
+    {
+        $file = $this->fileService->find($id);
+        if ($file == null || !$file->isProductFile()) {
+            return null;
+        }
+        $file->name = $request->input('name');
+        $file->save();
+        return $file;
     }
 
     private function prepareProductList($products)

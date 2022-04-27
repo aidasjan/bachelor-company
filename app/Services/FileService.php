@@ -7,7 +7,13 @@ use App\Models\File;
 
 class FileService
 {
-    public function getValidatedFilePath($fileId, $disk = 'public') {
+    public function find($id)
+    {
+        return File::find($id);
+    }
+
+    public function getValidatedFilePath($fileId, $disk = 'public')
+    {
         $file = File::find($fileId);
         if ($file == null) {
             return null;
@@ -20,7 +26,8 @@ class FileService
         }
     }
 
-    public function deleteFile($fileId, $disk = 'public') {
+    public function deleteFile($fileId, $disk = 'public')
+    {
         $file = File::find($fileId);
         if ($file === null) {
             return null;
@@ -29,7 +36,8 @@ class FileService
         $file->delete();
     }
 
-    public function uploadFile($file, $type, $name = null, $disk = 'public') {
+    public function uploadFile($file, $type, $name = null, $disk = 'public')
+    {
         $fileRecord = new File;
         $fileRecord->name = $name ?? $file->getClientOriginalName();
         $fileRecord->type = $type;
@@ -45,12 +53,12 @@ class FileService
 
     private function getFilePathInDisk($file)
     {
-        return 'uploads/'.$this->getFileFullName($file);
+        return 'uploads/' . $this->getFileFullName($file);
     }
 
     private function getFileFullName($file)
     {
-        return $file->file_name.'.'.strtolower($file->file_extension);
+        return $file->file_name . '.' . strtolower($file->file_extension);
     }
 
     private function generateRandomFileName()

@@ -140,7 +140,7 @@ class CategoriesController extends Controller
     public function uploadImage($id)
     {
         if (auth()->user()->isAdmin()) {
-            $category = Category::find($id);
+            $category = $this->categoryService->find($id);
             if ($category === null) abort(404);
             return view('pages.categories.file_upload')->with('category', $category);
         } else abort(404);

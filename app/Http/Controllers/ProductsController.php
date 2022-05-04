@@ -131,7 +131,7 @@ class ProductsController extends Controller
                 abort(404);
             }
             $this->parameterService->updateProductParameters($request, $product, $usage);
-            return redirect($product->category->getDisplayUrl());
+            return redirect('/products' . '/' . $product->id);
         } else abort(404);
     }
 

@@ -17,13 +17,13 @@
                 <table class='table_main'>
                     <tr><th></th><th>CATEGORY</th><th>CODE</th><th>NAME</th><th>RELATED</th></tr>
                     <?php $counter = 1; ?>
-                    @foreach ($products as $product)
+                    @foreach ($products as $prod)
                         <tr>
                             <td>{{$counter++}}.</td>
-                            <td>{{$product->category->name}}</td>
-                            <td>{{$product->code}}</td>
-                            <td>{{$product->name}}</td>
-                            <td><input type="checkbox" name="{{$product->id}}" @if ($relatedProducts->contains('related_product_id', $product->id)) checked @endif></td>
+                            <td>{{$prod->category->name}}</td>
+                            <td>{{$prod->code}}</td>
+                            <td>{{$prod->name}}</td>
+                            <td><input type="checkbox" name="{{$prod->id}}" @if ($relatedProducts->contains('related_product_id', $prod->id)) checked @endif></td>
                         </tr>
                     @endforeach
                     <td></td><td></td><td></td><td></td>

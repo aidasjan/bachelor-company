@@ -89,7 +89,7 @@ return [
     'product_info' => 'Product Info',
     'product_no_info' => 'No public info available',
     'product_more_info' => 'For more details regarding this product contact us directly via ',
-    'related_products' => 'Recommended Products',
+    'related_products' => 'Related Products',
     'add_to_order' => 'Add To My Order',
 
     'hello' => 'Hello',

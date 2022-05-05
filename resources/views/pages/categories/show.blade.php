@@ -14,7 +14,7 @@
                     <a href="{{url('/categories'.'/'.$category->id.'/edit')}}" class='btn btn-link link_main'>EDIT CATEGORY</a>
                     @if (count($childCategories) === 0) <a href="{{url('/products/create/'.$category->id)}}" class='btn btn-link link_main'>ADD PRODUCT</a> @endif
                     <a href="{{url('/categories/create/'.$category->id)}}" class='btn btn-link link_main'>ADD SUBCATEGORY</a>
-                    <a href="{{url('/reorder/categories/'.$category->id)}}" class='btn btn-link link_main'>REORDER</a>
+                    <a href="{{url('/reorder/categories/'.$category->id.'?redirectUrl='.$category->getDisplayUrl())}}" class='btn btn-link link_main'>REORDER</a>
                 </div>
             </div>
         @endif

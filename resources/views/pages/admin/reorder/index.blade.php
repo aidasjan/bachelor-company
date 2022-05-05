@@ -12,8 +12,9 @@
 
     <div class='row py-3'>
         <div class='col'>
-            <form action='{{ $parent_id != null ? action('App\Http\Controllers\ReorderController@reorder', [$type, $parent_id]) : action('App\Http\Controllers\ReorderController@reorderRoot', $type) }}' method='POST'>
+            <form action='{{ $parentId != null ? action('App\Http\Controllers\ReorderController@reorder', [$type, $parentId]) : action('App\Http\Controllers\ReorderController@reorderRoot', $type) }}' method='POST'>
                 {{ csrf_field() }}
+                <input type='hidden' name='redirect_url' value="{{$redirectUrl}}">
                 <div class='text-right'>
                     <button type='submit' class='btn btn-primary text-uppercase my-3'>Save Selections</button>
                 </div>

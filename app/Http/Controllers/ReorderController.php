@@ -14,24 +14,29 @@ class ReorderController extends Controller
         $this->reorderingService = $reorderingService;
     }
 
-    public function index($type, $parent_id = null)
+    public function index(Request $request, $type, $parentId = null)
     {
         if (auth()->user()->isAdmin()) {
-            $items = $this->reorderingService->getItemsToReorder($type, $parent_id);
+            $items = $this->reorderingService->getItemsToReorder($type, $parentId);
             if ($items == null || $items->count() == 0) { abort(404); }
             return view('pages.admin.reorder.index')->with([
                 'items' => $items,
                 'type' => $type,
-                'parent_id' => $parent_id
+                'parentId' => $parentId,
+                'redirectUrl' => $request->input('redirectUrl'),
             ]);
         }
         else abort(404);
     }
 
-    public function reorder(Request $request, $type, $parent_id = null)
+    public function reorder(Request $request, $type, $parentId = null)
     {
         if (auth()->user()->isAdmin()) {
-            $this->reorderingService->reorderItems($request, $type, $parent_id);
+            $this->reorderingService->reorderItems($request, $type, $parentId);
+            $redirectUrl = $request->input('redirect_url');
+            if ($redirectUrl) {
+                return redirect($redirectUrl);
+            }
             return redirect()->back();
         }
         else abort(404);
@@ -41,7 +46,7 @@ class ReorderController extends Controller
     {
         if (auth()->user()->isAdmin()) {
             $this->reorderingService->reorderItems($request, $type);
-            return redirect()->back();
+            return redirect('/');
         }
         else abort(404);
     }

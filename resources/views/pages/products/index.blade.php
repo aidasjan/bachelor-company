@@ -18,7 +18,7 @@
                 <a href="{{url('/products/create/'.$category->id)}}" class='btn btn-link link_main'>ADD PRODUCT</a>
                 <a href="{{url('/categories'.'/'.$category->id.'/edit')}}" class='btn btn-link link_main'>EDIT CATEGORY</a>
                 <a href="{{url('/categories'.'/'.$category->id.'/images/create')}}" class='btn btn-link link_main'>ADD IMAGE</a>
-                <a href="{{url('/reorder/products/'.$category->id)}}" class='btn btn-link link_main'>REORDER</a>
+                <a href="{{url('/reorder/products/'.$category->id.'?redirectUrl='.$category->getDisplayUrl())}}" class='btn btn-link link_main'>REORDER</a>
             </div>
         </div>
     @endif

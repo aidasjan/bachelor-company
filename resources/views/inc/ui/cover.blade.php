@@ -1,4 +1,4 @@
-@if (Request::url() === url('/') && !Session::has('current_order'))
+@if (Request::is('/') && !Session::has('current_order'))
 <div class='image_background w-100 p-0 m-0' style="background-image: url({{asset('img/main-cover.jpg')}});">
     <div class='w-100 container_bluetranslucent'>
         <div class='container text-center'>

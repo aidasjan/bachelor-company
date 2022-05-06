@@ -16,12 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
+                'id' => 1,
                 'code' => 'water-softeners',
                 'name' => 'Water Softeners',
                 'name_ru' => 'Умягчители воды',
                 'discount' => 0,
             ],
             [
+                'id' => 2,
                 'code' => 'iron-removal',
                 'name' => 'Iron Removal',
                 'name_ru' => 'Обезжелезивания',
@@ -31,6 +33,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('products')->insert([
             [
+                'id' => 1,
                 'code' => 'W001',
                 'name' => 'Water Softener W001 Light',
                 'price' => 96,
@@ -39,6 +42,7 @@ class DatabaseSeeder extends Seeder
                 'category_id' => 1
             ],
             [
+                'id' => 2,
                 'code' => 'W002',
                 'name' => 'Water Softener W002 Pro',
                 'price' => 115,
@@ -47,6 +51,7 @@ class DatabaseSeeder extends Seeder
                 'category_id' => 1
             ],
             [
+                'id' => 3,
                 'code' => 'I001',
                 'name' => 'Iron Remover I001 Regular',
                 'price' => 102,
@@ -57,16 +62,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('usages')->insert([
-            [ 'name' => 'Water Softening' ],
-            [ 'name' => 'Iron Removal' ]
+            ['id' => 1, 'name' => 'Water Softening'],
+            ['id' => 2, 'name' => 'Iron Removal']
         ]);
 
         DB::table('parameters')->insert([
-            ['name' => 'Resin volume (l)'],
-            ['name' => 'Exchange capacity (eq)'],
-            ['name' => 'Quantity of media (l)'],
-            ['name' => 'Service flow (m3/h)'],
-            ['name' => 'Max flow (m3/h)']
+            ['id' => 1, 'name' => 'Resin volume (l)'],
+            ['id' => 2, 'name' => 'Exchange capacity (eq)'],
+            ['id' => 3, 'name' => 'Quantity of media (l)'],
+            ['id' => 4, 'name' => 'Service flow (m3/h)'],
+            ['id' => 5, 'name' => 'Max flow (m3/h)']
         ]);
 
         DB::table('product_parameters')->insert([

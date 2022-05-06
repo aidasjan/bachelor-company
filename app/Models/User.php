@@ -27,7 +27,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Order', 'user_id');
     }
-    
+
     public function discounts()
     {
         return $this->hasMany('App\Models\Discount', 'user_id');
@@ -59,12 +59,18 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === 'admin' && $this->company && $this->company->id == config('custom.company_info.id') && !$this->isNew;
+        return $this->role === 'admin' &&
+            $this->company &&
+            $this->company->id == config('custom.company_info.id') &&
+            !$this->isNew;
     }
 
     public function isClient()
     {
-        return $this->role === 'client' && !$this->is_new;
+        return ($this->role === 'client' || ($this->role === 'admin' &&
+            $this->company &&
+            $this->company->id != config('custom.company_info.id'))
+        ) && !$this->is_new;
     }
 
     public function isNewClient()

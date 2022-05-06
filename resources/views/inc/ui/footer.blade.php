@@ -9,7 +9,7 @@
                     <b>{{config('custom.company_info.email')}}</b> <b class='mx-2'>|</b> <b>{{config('custom.company_info.phone')}}</b><br>
                 </div>
                 <div class='py-2'>
-                    <a href="{{url('/privacy-policy')}}" class='link_lightblue'>{{__('main.privacy_policy')}}</a>
+                    <a href="{{config('custom.gateway_url').'/privacy-policy'}}" class='link_lightblue'>{{__('main.privacy_policy')}}</a>
                 </div>
             </div>
         </div>

@@ -101,7 +101,6 @@ return [
     'dont_have_account' => "Don't have an account?",
     'dont_have_account_desc' => 'Contact us via wmp@wmp.local to request for your personal WMP account. You will be able to browse and order our products in a matter of minutes!',
 
-    'password_not_secure' => 'Password is not secure! Password must include letters and numbers.',
     'order_confirmation' => 'Your order (ORDER :order) was successfully submitted. Check your email inbox (:email) for confirmation.',
 
     'success' => 'Success',

@@ -60,7 +60,7 @@ class ProductsController extends Controller
     private function validateStoreRequest($request)
     {
         $this->validate($request, [
-            'code' => 'required',
+            'code' => 'required|unique:products',
             'name' => 'required',
             'unit' => 'required',
             'currency' => 'required',
@@ -150,7 +150,7 @@ class ProductsController extends Controller
     private function validateUpdateRequest($request)
     {
         $this->validate($request, [
-            'code' => 'required',
+            'code' => 'required|unique:products',
             'name' => 'required',
             'unit' => 'required',
             'currency' => 'required',

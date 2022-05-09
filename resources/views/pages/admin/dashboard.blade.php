@@ -82,13 +82,13 @@
     <div class='row'>
         <div class='col-md py-4 mx-3 my-3 dashboard_box container_lightblue'>
             <h3>Add New Client</h3>
-            <div class='pb-3'><span>Add client and generate a password</span></div>
+            <div class='pb-3'><span>Invite a new client</span></div>
             <a href="{{url('/register')}}" class='btn btn-primary'>NEW CLIENT</a>
         </div>
 
         <div class='col-md py-4 mx-3 my-3 dashboard_box container_lightblue'>
             <h3>Users & Discounts</h3>
-            <div class='pb-3'><span>Edit users, reset passwords, manage their personal discounts</span></div>
+            <div class='pb-3'><span>Manage users and their personal discounts</span></div>
             <a href="{{url('/users')}}" class='btn btn-primary'>MANAGE USERS</a>
         </div>
     </div>

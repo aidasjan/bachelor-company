@@ -14,11 +14,13 @@ class RelatedProduct extends Model
     public $primaryKey = 'id';
     public $timeStamps = true;
 
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo('App\Models\Product', 'product_id');
     }
 
-    public function getProduct(){
+    public function getProduct()
+    {
         $related_product = $this;
         return Product::find($related_product->related_product_id);
     }

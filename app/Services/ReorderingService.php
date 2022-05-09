@@ -7,12 +7,12 @@ use App\Models\Category;
 
 class ReorderingService
 {
-    private $supported_types = ['products', 'categories'];
+    private $supportedTypes = ['products', 'categories'];
 
-    public function reorderItems($request, $type, $parent_id = null) 
+    public function reorderItems($request, $type, $parentId = null) 
     {
         if (!$this->isReorderTypeSupported($type)) { return; }
-        $items = $this->getItemsToReorder($type, $parent_id);
+        $items = $this->getItemsToReorder($type, $parentId);
         foreach ($items as $item) {
             $new_position = $request->input($item->id);
             if ($new_position != null && is_numeric($new_position)){
@@ -22,19 +22,19 @@ class ReorderingService
         }
     }
 
-    public function getItemsToReorder($type, $parent_id) 
+    public function getItemsToReorder($type, $parentId) 
     {
         switch ($type) {
             case 'categories':
-                return Category::where('parent_id', $parent_id)->orderBy('position')->get();
+                return Category::where('parent_id', $parentId)->orderBy('position')->get();
             case 'products':
-                return Product::where('category_id', $parent_id)->orderBy('position')->get();
+                return Product::where('category_id', $parentId)->orderBy('position')->get();
             default: return null;
         }
     }
 
     private function isReorderTypeSupported($type) 
     {
-        return in_array($type, $this->supported_types);
+        return in_array($type, $this->supportedTypes);
     }
 }

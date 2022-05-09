@@ -121,6 +121,6 @@ Route::get('backup/scheduled/{token}', 'App\Http\Controllers\BackupsController@s
 Route::get('/language/{locale}', 'App\Http\Controllers\LocaleController@changeLocale');
 
 // Misc
-Route::get('login', function(){
-    return redirect(config('custom.gateway_url').'/login');
+Route::get('login', function () {
+    return redirect(config('custom.gateway_url') . '/login');
 })->name('login');

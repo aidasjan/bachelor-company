@@ -13,15 +13,18 @@ class ProductParameter extends Model
     public $primaryKey = 'id';
     public $timeStamps = true;
 
-    public function product() {
+    public function product()
+    {
         return $this->belongsTo('App\Models\Product');
     }
 
-    public function usage() {
+    public function usage()
+    {
         return $this->belongsTo('App\Models\Usage');
     }
 
-    public function parameter() {
+    public function parameter()
+    {
         return $this->belongsTo('App\Models\Parameter');
     }
 }

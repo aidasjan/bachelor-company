@@ -13,11 +13,13 @@ class Usage extends Model
     public $primaryKey = 'id';
     public $timeStamps = true;
 
-    public function productParameters() {
+    public function productParameters()
+    {
         return $this->belongsToMany('App\Models\ProductParameter', 'product_parameters');
     }
 
-    public function safeDelete() {
+    public function safeDelete()
+    {
         $this->productParameters()->detach();
         $this->delete();
     }
